@@ -1,9 +1,15 @@
 .movie-card {
     position: relative;
+    width: 270px;
+    height: 218px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.05);
 }
 
 .movie-card__image {
-
+    border-radius: 10px 10px 0 0;
 }
 
 .movie-card__footer {
@@ -40,14 +46,34 @@
 .movie-card__footer_short {
     width: 16px;
     height: 16px;
-    background-color: #2BE080;
+    background-color: #F9F9F9;
     border: 1px solid #FFFFFF;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.09);
     border-radius: 50px;
     position: absolute;
     right: 12px;
     top: 14px;
 }
 
-.movie-card__footer_delete {
+#short {
+    background-color: #2BE080;
+}
 
+.movie-card__footer_delete {
+    background-image: url('../../images/delete_cross.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 14px;
+    right: 12px;
+    background-color: #FFFFFF;
+    border: 0px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }

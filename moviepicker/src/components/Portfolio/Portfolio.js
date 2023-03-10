@@ -1,6 +1,6 @@
 import './Portfolio.css';
 
-function Portfolio(props) {
+function Portfolio() {
 
     const portfolio = ['Статичный сайт', 'Адаптивный сайт', 'Одностраничное приложение']
 

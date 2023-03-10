@@ -21,6 +21,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   // const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   // const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   // const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -77,13 +78,10 @@ function App() {
     if (jwt){
       checkToken(jwt)
       .then((res) => {
-        console.log('TOKEN CHECK >>>', res)
-        console.log('LOGEDIN STATUS 3>>>>', loggedIn)
         if (res){
           setLoggedIn({
             loggedIn: true,
           });
-          console.log('LOGEDIN STATUS 4>>>>', loggedIn)
           history.push("/movies");
         }}) 
       .catch((err) => {
@@ -105,14 +103,16 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-    // loggedIn && api
-    //   .getInitialCards()
-    //   .then((initialMovies) => {
-    //     setMovies(initialMovies.data.reverse());
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    
+    loggedIn && api
+      .getInitialMovieCards()
+      .then((initialMovies) => {
+        setMovies(initialMovies.data.reverse());
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [loggedIn]);
 
   useEffect(() => {
@@ -121,7 +121,7 @@ function App() {
 
   return (
     <div className="page">
-      <CurrentUserContext.Provider value={{currentUser, setCurrentUser}}>
+      <CurrentUserContext.Provider value={currentUser}>
         <Header
           loggedIn={loggedIn}
         />
@@ -147,13 +147,17 @@ function App() {
           </Route>
           <Route exact path="/movies">
             <Movies
-              loggedIn={loggedIn}
               movies={movies}
+              isLoading={isLoading}
               onCardDelete={handleMovieCardDelete}
               onCardClick={handleMovieCardClick}/>
           </Route>
           <Route exact path="/saved-movies">
-            <SavedMovies />
+            <SavedMovies 
+              movies={movies}
+              isLoading={isLoading}
+              onCardDelete={handleMovieCardDelete}
+            />
           </Route>
           <Route path="*">
             <Page404 />

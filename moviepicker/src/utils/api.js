@@ -3,11 +3,10 @@ import { BASE_URL } from "./auth";
 class Api {
     constructor(config) {
         this._url = `${config.url}/`;
-        this._cardId = config._id;
+        this._movieId = config._id;
         this._likesCounter = config.likes;
-        this._urlCards = `${this._url}cards`;
+        this._urlMovies = `${this._url}movies`;
         this._urlProfile = `${this._url}users/me`;
-        this._urlAvatar = `${this._urlProfile}/avatar`;
     }
 
     _getResponseData(url, res) {
@@ -25,6 +24,7 @@ class Api {
         },
         })
       .then((res) => {
+        console.log('RES PROFILE>>>>', res);
          return this._getResponseData(this._urlProfile, res)
         })
     }
@@ -43,6 +43,8 @@ class Api {
     }
     
     getInitialMovieCards() {
+      console.log(this._url)
+      console.log(this._urlMovies)
       return fetch(this._urlMovies, {
         method: 'GET',
         headers: {
@@ -51,6 +53,7 @@ class Api {
         },
         })
         .then((res) => {
+          console.log('RES >>>>', res);
           return this._getResponseData(this._urlMovies, res)
         })
     }
@@ -129,23 +132,6 @@ class Api {
           return this._getResponseData(`${this._urlMovies}/${movieId}/likes`, res)
         })
     }
-
-    updateAvatar(data) {
-      return fetch(`${this._urlProfile}/avatar`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        },
-        body: JSON.stringify({
-          avatar: data
-        })
-        })
-        .then(res => {
-          return this._getResponseData(`${this._urlProfile}/avatar`, res)
-        })
-    }
-
 }
 
 const api = new Api({

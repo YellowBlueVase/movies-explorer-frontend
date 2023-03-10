@@ -1,11 +1,10 @@
 import SearchForm from "../SearchForm/SearchForm";
-import MoviesCard from "../MoviesCard/MoviesCard";
 import './Movies.css';
 import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { useEffect } from "react";
 
-function Movies({movies, onCardClick, onCardLike, onCardDelete}) {
+function Movies({movies, isLoading, onCardClick, onCardLike, onCardDelete}) {
 
     useEffect(() => {
         document.title = "Фильмы"
@@ -14,25 +13,16 @@ function Movies({movies, onCardClick, onCardLike, onCardDelete}) {
     return (
         <main className="movies-page">
             <SearchForm
-                checkboxText={'Краткометражки'} 
+                checkboxText={'Короткометражки'} 
             />
             <div className="separator-h"></div>
-            <Preloader />
-            <MoviesCardList />
-            <section className="movies-cards">
-                {movies.map(movie => {
-                return (
-                    <MoviesCard 
-                    key={movie._id} 
-                    card={movie}
-                    onCardClick
-                    onCardLike
-                    onCardDelete
-                    />
-                );
-                })}
-            </section>
-            <div className="more">Ещё</div>
+            {isLoading && <Preloader />}
+            <MoviesCardList 
+                movies={movies}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike} 
+                onCardDelete={onCardDelete}
+            />
         </main>
     );
 }

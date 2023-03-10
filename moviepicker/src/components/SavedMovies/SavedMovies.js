@@ -1,10 +1,18 @@
-import Movies from '../Movies/Movies';
+import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearhForm from '../SearchForm/SearchForm';
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import './SavedMovies.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function SavedMovies(props) {
+function SavedMovies({movies, isLoading, onCardDelete}) {
+
+    const currentUser = useContext(CurrentUserContext);
+    const userMovies = movies.filter(movie => {
+        if (movie.owner === currentUser._id) {
+            return true
+        }
+    })
 
     useEffect(() => {
         document.title = "Сохранённые фильмы"
@@ -12,11 +20,15 @@ function SavedMovies(props) {
 
     return (
         <div className="saved-movies">
-            {/* <SearhForm
+            <SearhForm
                 checkboxText={'Короткометражки'} 
             />
-            <MoviesCardList />
-            <Movies /> */}
+            <div className="separator-h"></div>
+            {isLoading && <Preloader />}
+            <MoviesCardList 
+                movies={userMovies}
+                onCardDelete={onCardDelete}
+            />
         </div>
     )
 }
