@@ -1,18 +1,14 @@
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearhForm from '../SearchForm/SearchForm';
-import { useEffect, useContext } from 'react';
+import { useEffect } from 'react';
 import './SavedMovies.css';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-function SavedMovies({movies, isLoading, onCardDelete}) {
+function SavedMovies({movies, shortMovies, shortMoviesActive, isLoading, onShortClick, onCardDelete}) {
 
-    const currentUser = useContext(CurrentUserContext);
-    const userMovies = movies.filter(movie => {
-        if (movie.owner === currentUser._id) {
-            return true
-        }
-    })
+    function handlePickMoviesCards() {
+        return shortMoviesActive ? shortMovies : movies;
+    }
 
     useEffect(() => {
         document.title = "Сохранённые фильмы"
@@ -21,12 +17,14 @@ function SavedMovies({movies, isLoading, onCardDelete}) {
     return (
         <div className="saved-movies">
             <SearhForm
+                shortMoviesActive={shortMoviesActive}
+                onShortClick={onShortClick}
                 checkboxText={'Короткометражки'} 
             />
             <div className="separator-h"></div>
             {isLoading && <Preloader />}
             <MoviesCardList 
-                movies={userMovies}
+                movies={handlePickMoviesCards()}
                 onCardDelete={onCardDelete}
             />
         </div>

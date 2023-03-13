@@ -3,6 +3,7 @@
     flex-direction: column;
     position: relative;
     max-width: 1280px;
+    min-width: 320px;
     margin: 0 70px;
 }
 
@@ -70,11 +71,98 @@
     text-decoration: none;
     color: #000000;
     font-family: Inter;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 16px;
+    line-height: 16.94px;
     letter-spacing: 0px;
     text-align: left;
     cursor: pointer;
     margin: 0 0 101px 0;
+}
+
+.about-me__github:hover {
+    font-weight: 800;
+}
+
+@media all and (max-width: 1280px) {
+    .about-me {
+        margin: 0 20px;
+    }
+
+    .about-me__title {
+        line-height: 26.63px;
+        margin: 90px 0 23px 0;    
+    }
+
+    .about-me__name {
+        font-size: 40px;
+        line-height: 40px;
+        margin: 66px 0 0 0;    
+    }
+    
+    .about-me__description {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 16px 0 20px 0;    
+    }
+
+    .about-me__details {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 87px 0;    
+    }
+
+    .about-me__photo {
+        top: 207px;
+        height: 307px;
+        width: 255px;
+    }
+
+    .about-me__github {
+        margin: 0 0 91px 0;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .about-me {
+        margin: 0 14px;
+    }
+
+    .about-me__title {
+        font-size: 18px;
+        line-height: 21.78px;
+        margin: 70px 0 28px 0;    
+    }
+
+    .about-me__name {
+        font-size: 30px;
+        line-height: 36.31px;
+        margin: 40px 0 0 0;    
+    }
+    
+    .about-me__description {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 20px 0 20px 0;    
+    }
+
+    .about-me__details {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 0 0 40px 0;    
+    }
+
+    .about-me__photo {
+        position: relative;
+        align-self: center;
+        margin: 60px 0 0 0;
+        height: 352px;
+        width: 292px;
+        top: 0;
+    }
+
+    .about-me__github {
+        margin: 0 0 70px 0;
+    }
+    
 }

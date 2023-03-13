@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     max-width: 1280px;
+    min-width: 320px;
     margin: 0 40px;
     border-radius: 10px;
     background-color: #F5F5F5;   
@@ -22,4 +23,30 @@
 .promo__blocks {
     display: flex;
     flex-direction: row;
+}
+
+@media all and (max-width: 1280px) {
+    .promo {
+        margin: 0 20px;
+    }
+
+    .promo__header {
+        font-size: 40px;
+        line-height: 52px;
+        width: 680px;
+        margin: 350px 0 314px 0;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .promo {
+        margin: 0 14px;
+    }
+
+    .promo__header {
+        font-size: 29px;
+        line-height: 37px;
+        width: 292px;
+        margin: 220px 0 212px 0;
+    }
 }

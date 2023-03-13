@@ -21,7 +21,12 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
+  const [ownMovies, setOwnMovies] = useState([]);
+  const [shortMoviesActive, setShortMoviesActive] = useState(false);
+  const [moviesShort, setMoviesShort] = useState([]);
+  const [ownMoviesShort, setOwnMoviesShort] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [navMenuOpen, setNavMenuOpen] = useState(false);
   // const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   // const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   // const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -44,13 +49,9 @@ function App() {
   function handleLogin(password, email) {
     authorize(password, email)
         .then((data) => {
-          // console.log('data.token >>>>', data.token)
-          // console.log('local storage >>', localStorage.getItem('jwt'))
           if (data.token === localStorage.getItem('jwt')) {
-            console.log('LOGEDIN STATUS 1>>>>', loggedIn)
               handleLoggedInChange()
               handleTokenCheck()
-              console.log('LOGEDIN STATUS 2>>>>', loggedIn)
             }})
         .catch((err) => {
             console.log(err);
@@ -94,6 +95,66 @@ function App() {
     setLoggedIn(false)
   }
 
+  function handleOwnMoviesFilter(movies){
+    let newArray = []
+    movies.filter(movie => {
+      if (movie.owner === currentUser._id) {
+        newArray.push(movie)
+      }
+    })
+    setOwnMovies(newArray);
+    console.log(newArray)
+    setTimeout(()=>{console.log('OWN MOVIES>>>', ownMovies)}, 1)
+  }
+
+  function handleFilterShortMovies(array, shortMoviesStatus){
+    let newArray = []
+    if (shortMoviesStatus) {
+      array.filter((item) => {
+        if (item.duration <30) {
+          newArray.push(item)
+        }
+      })
+    } else {
+      newArray = []
+    }
+    setMoviesShort(newArray);
+  }
+
+  function handleChangeShortMoviesStatus() {
+    setShortMoviesActive(!shortMoviesActive); 
+  }
+
+  function handleToggleNavMenu() {
+    console.log(navMenuOpen);
+    setNavMenuOpen(!navMenuOpen); 
+  }
+
+  // function handleNavButtonClick() {
+  //   setIsEditProfilePopupOpen(true);
+  // }
+
+  function closeAllPopups() {
+    setNavMenuOpen(false);
+  }
+
+  const isOpen = navMenuOpen;
+
+  useEffect(() => {
+    function closeByEscape(evt) {
+      if (evt.key === "Escape") {
+        closeAllPopups();
+      }
+    }
+    if (isOpen) {
+      document.addEventListener("keydown", closeByEscape);
+    
+      return () => {
+        document.removeEventListener("keydown", closeByEscape);
+      };
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     loggedIn && api
       .getProfileInfo()
@@ -109,14 +170,18 @@ function App() {
       .then((initialMovies) => {
         setMovies(initialMovies.data.reverse());
         setIsLoading(false);
+        setTimeout(()=> {handleOwnMoviesFilter(initialMovies.data);}, 1000)
       })
       .catch((err) => {
         console.log(err);
       });
+    
   }, [loggedIn]);
 
   useEffect(() => {
-    handleTokenCheck()
+    handleTokenCheck();
+    handleFilterShortMovies(ownMovies, shortMoviesActive); 
+    handleFilterShortMovies(moviesShort, shortMoviesActive);
   }, []);
 
   return (
@@ -124,8 +189,13 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header
           loggedIn={loggedIn}
+          navMenuOpen={navMenuOpen}
+          onToggleNavMenu={handleToggleNavMenu}
         />
-        <Navigation />
+        <Navigation
+          navMenuOpen={navMenuOpen}
+          onToggleNavMenu={handleToggleNavMenu}
+        />
         <Switch>
           <Route exact path="/signin">
             <Login 
@@ -148,20 +218,26 @@ function App() {
           <Route exact path="/movies">
             <Movies
               movies={movies}
+              shortMovies={moviesShort}
+              shortMoviesActive={shortMoviesActive}
               isLoading={isLoading}
-              onCardDelete={handleMovieCardDelete}
-              onCardClick={handleMovieCardClick}/>
-          </Route>
-          <Route exact path="/saved-movies">
-            <SavedMovies 
-              movies={movies}
-              isLoading={isLoading}
+              onShortClick={handleChangeShortMoviesStatus}
               onCardDelete={handleMovieCardDelete}
             />
           </Route>
-          <Route path="*">
-            <Page404 />
+          <Route exact path="/saved-movies">
+            <SavedMovies 
+              movies={ownMovies}
+              shortMovies={ownMoviesShort}
+              shortMoviesActive={shortMoviesActive}
+              isLoading={isLoading}
+              onShortClick={handleChangeShortMoviesStatus}
+              onCardDelete={handleMovieCardDelete}
+            />
           </Route>
+          {/* <Route path="*">
+            <Page404 />
+          </Route> */}
         </Switch>
         <Footer />
       </CurrentUserContext.Provider>

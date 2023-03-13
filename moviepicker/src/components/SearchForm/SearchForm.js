@@ -1,7 +1,7 @@
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.css';
 
-function SearhForm({checkboxText}) {
+function SearhForm({checkboxText, shortMoviesActive, onShortClick}) {
 
     return (
         <section className="search-box">
@@ -10,6 +10,8 @@ function SearhForm({checkboxText}) {
             <div className="search-box__button"></div>
             <div className="search-box__separator-v"></div>
             <FilterCheckbox 
+                shortMoviesActive={shortMoviesActive}
+                onShortClick={onShortClick}
                 text={checkboxText}
             />
         </section>

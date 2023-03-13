@@ -1,5 +1,3 @@
-import {useContext} from "react";
-import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import Promo from "../Promo/Promo";
 import NavTab from "../NavTab/NavTab";
 import AboutProject from "../AboutProject/AboutProject";
@@ -10,9 +8,12 @@ import { useEffect } from "react";
 import './Main.css';
 
 
-function Main() {
-
-  const currentUser = useContext(CurrentUserContext);
+function Main() {  
+  const blocks = [
+    {name: "О проекте", class: "about-project"}, 
+    {name: "Технологии", class: "technologies"}, 
+    {name: "Студент", class: "about-me"}, 
+  ];
 
   useEffect(() => {
     document.title = "О проекте"
@@ -20,7 +21,17 @@ function Main() {
 
   return (
     <main>
-      <Promo />
+      <Promo>
+        {blocks.map((block) => {
+          return (
+            <NavTab 
+              key={block.name}
+              block={block.name}
+              link={block.class}
+            />
+          )
+        })}
+      </Promo>
       <AboutProject />
       <Techs />
       <AboutMe />

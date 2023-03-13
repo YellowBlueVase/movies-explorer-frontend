@@ -1,21 +1,15 @@
 .header {
     max-width: 1280px;
+    min-width: 320px;
     height: 74px;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14x;
+    font-size: 14px;
     margin: 18px 70px;
     justify-self: center;
 }
-
-/* @media all and (min-width: 1280px) {
-    .header {
-        max-width: 1280px;
-        margin-left: 30px;
-    }
-  } */
 
 .header__logo {
     background-image: url("../../images/logo_login.svg");
@@ -69,4 +63,61 @@
     background-image: url("../../images/account_logo.svg");
     width: 100px;
     height: 32px;
+}
+
+.header__right_navigation {
+    background-image: url("../../images/navigation_logo.svg");
+    width: 44px;
+    height: 44px;
+    display: none;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    background-color: #ffffff;
+    border: none;
+}
+
+@media all and (max-width: 1280px) {
+    .header {
+        font-size: 12px;
+        margin: 18px 30px;
+    }
+
+    .header__hidden {
+        display: none;
+    }
+
+    .header__right_profile {
+        display: none;
+    }
+
+    .header__right_text_movies {
+        display: none;
+    }
+
+    .header__right_text_saved-movies {
+        display: none;
+    }
+
+    .header__right_navigation {
+        display: block;
+    }
+
+    .header__right_text_signin {
+        width: 56px;
+        height: 26px;
+        line-height: 26px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .header {
+        font-size: 10px;
+        margin: 18px 14px;
+    }
+
+    .header__right_text_signin {
+        width: 56px;
+        height: 26px;
+    }
 }

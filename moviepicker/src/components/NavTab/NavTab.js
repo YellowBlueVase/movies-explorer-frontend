@@ -1,8 +1,8 @@
 import './NavTab.css';
 
-function NavTab({block}) {
+function NavTab({block, link}) {
     return (
-        <div className="block">{block}</div>
+        <a href={`#${link}`} className="block">{block}</a>
     )
 }
 

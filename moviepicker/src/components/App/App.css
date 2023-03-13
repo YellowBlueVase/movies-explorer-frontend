@@ -21,6 +21,18 @@
 
 @media all and (min-width: 1280px) {
   .page {
-      max-width: 1280px;
+    max-width: 1280px;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .page {
+    max-width: 768px;
+  }
+}
+
+@media all and (max-width: 320px) {
+  .page {
+    min-width: 320px;
   }
 }

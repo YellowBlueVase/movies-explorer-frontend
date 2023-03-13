@@ -24,7 +24,6 @@ class Api {
         },
         })
       .then((res) => {
-        console.log('RES PROFILE>>>>', res);
          return this._getResponseData(this._urlProfile, res)
         })
     }
@@ -43,8 +42,6 @@ class Api {
     }
     
     getInitialMovieCards() {
-      console.log(this._url)
-      console.log(this._urlMovies)
       return fetch(this._urlMovies, {
         method: 'GET',
         headers: {
@@ -53,7 +50,6 @@ class Api {
         },
         })
         .then((res) => {
-          console.log('RES >>>>', res);
           return this._getResponseData(this._urlMovies, res)
         })
     }

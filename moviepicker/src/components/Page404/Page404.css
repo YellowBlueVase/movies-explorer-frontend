@@ -35,3 +35,37 @@
     color: #3456F3;   
     margin: 0 0 60px 0; 
 }
+
+@media all and (max-width: 1280px) {
+    .page404__main-text {
+        margin: 408px 0 5px 0;  
+    }
+    
+    .page404__back {
+        margin: 0 0 224px 0; 
+    }
+}
+
+@media all and (max-width: 768px) {
+    .page404 {
+        min-width: 320px;
+    }
+    
+    .page404__main-text {
+        font-size: 80px;
+        line-height: 96.82px;
+        margin: 329px 0 10px 0;  
+    }
+    
+    .page404__description {
+        font-size: 12px;
+        line-height: 14.52px;   
+        margin: 0 0 284px 0;
+    }
+    
+    .page404__back {
+        font-size: 12px;
+        line-height: 14.52px;  
+        margin: 0 0 30px 0; 
+    }
+}

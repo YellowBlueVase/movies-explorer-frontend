@@ -3,7 +3,6 @@ export const BASE_URL = 'http://localhost:3000'
 
 function getResponseData(res) {
     if (res.ok) {
-      console.log(`Response worked WELL ->`, res)
       return res.json()}
     return Promise.reject(`Cтатус ошибки ${res.status}`)
   }

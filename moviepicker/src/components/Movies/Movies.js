@@ -4,7 +4,11 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { useEffect } from "react";
 
-function Movies({movies, isLoading, onCardClick, onCardLike, onCardDelete}) {
+function Movies({movies, shortMovies, shortMoviesActive, isLoading, onShortClick, onCardDelete}) {
+
+    function handlePickMoviesCards() {
+        return shortMoviesActive ? shortMovies : movies;
+    }
 
     useEffect(() => {
         document.title = "Фильмы"
@@ -13,14 +17,14 @@ function Movies({movies, isLoading, onCardClick, onCardLike, onCardDelete}) {
     return (
         <main className="movies-page">
             <SearchForm
+                shortMoviesActive={shortMoviesActive}
+                onShortClick={onShortClick}
                 checkboxText={'Короткометражки'} 
             />
             <div className="separator-h"></div>
             {isLoading && <Preloader />}
             <MoviesCardList 
-                movies={movies}
-                onCardClick={onCardClick}
-                onCardLike={onCardLike} 
+                movies={handlePickMoviesCards()}
                 onCardDelete={onCardDelete}
             />
         </main>
