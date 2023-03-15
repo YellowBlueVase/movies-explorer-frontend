@@ -19,11 +19,11 @@ function Portfolio() {
 
                     return (
                         <div>
-                            <div key={`${item}1`} className='portfolio__item'>
-                                <div key={`${item}2`} className="portfolio__item_name">{item}</div>
-                                <div key={`${item}3`} className="portfolio__item_link-logo">↗</div>
+                            <div key={`${index}1`} className='portfolio__item'>
+                                <div key={`${index}2`} className="portfolio__item_name">{item}</div>
+                                <div key={`${index}3`} className="portfolio__item_link-logo">↗</div>
                             </div>
-                            <div key={`${item}4`} className={separatorTag}></div>
+                            <div key={`${index}4`} className={separatorTag}></div>
                         </div>
                     )}
                 )}

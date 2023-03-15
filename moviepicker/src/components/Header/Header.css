@@ -1,6 +1,6 @@
 .header {
-    max-width: 1280px;
-    min-width: 320px;
+    max-width: 1140px;
+    min-width: 292px;
     height: 74px;
     position: relative;
     display: flex;
@@ -9,6 +9,7 @@
     font-size: 14px;
     margin: 18px 70px;
     justify-self: center;
+    z-index: 1;
 }
 
 .header__logo {
@@ -83,7 +84,7 @@
         margin: 18px 30px;
     }
 
-    .header__hidden {
+    /* .header__hidden {
         display: none;
     }
 
@@ -97,7 +98,7 @@
 
     .header__right_text_saved-movies {
         display: none;
-    }
+    } */
 
     .header__right_navigation {
         display: block;

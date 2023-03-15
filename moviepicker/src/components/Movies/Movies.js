@@ -21,7 +21,6 @@ function Movies({movies, shortMovies, shortMoviesActive, isLoading, onShortClick
                 onShortClick={onShortClick}
                 checkboxText={'Короткометражки'} 
             />
-            <div className="separator-h"></div>
             {isLoading && <Preloader />}
             <MoviesCardList 
                 movies={handlePickMoviesCards()}

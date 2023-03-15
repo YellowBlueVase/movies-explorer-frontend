@@ -1,28 +1,29 @@
-.form-container_login {
+.login {
     max-width: 396px;
     height: 100%;
     position: relative;
+    z-index: 0;
     justify-content:center;
     align-self: center;
     font-size: 14px;
     margin: 0;
 }
 
-.form-container__logo_login {
+.login__logo {
     background-image: url("../../images/logo_login.svg");
     width: 38px;
     height: 38px;
     margin-top: 70px;
 }
 
-.form-container__greeting_login {
+.login__greeting {
     font-size: 24px;
     font-weight: 500;
     line-height: 29px;
     margin: 40px 0;
 }
 
-.form-container__input_login {
+.login__input {
     background-color: white;
     color: black;
     border: 0;
@@ -32,21 +33,22 @@
     cursor: pointer;
 }
 
-#form-container__input_email_login {
-    margin-bottom: 24px;
-}
-
-#form-container__input_password_login {
-    margin-bottom: 42px;
-}
-
-.form-container__input_login:focus {
+.login__input:focus {
     font-weight: bold;
     color: black;
     outline: none;
+    border-bottom: 1px solid #3456F3;
 }
 
-.form-container__register-text_login {
+#login__input_email {
+    margin-bottom: 24px;
+}
+
+#login__input_password {
+    margin-bottom: 42px;
+}
+
+.login__register-text {
     color: #A0A0A0;
     font-size: 14px;
     line-height: 16.94px;
@@ -60,19 +62,19 @@
     cursor: pointer;
 }
 
-.form-container__register-text_link_login {
+.login__register-text_link {
     color: #3456F3;
     
 }
 
-.form-container__text_login {
+.login__text {
     color: #A0A0A0;
     font-size: 10px;
     font-weight: 400;
     margin: 0 0 5px;
 }
 
-.form-container__submit_login {
+.login__submit {
     color: white;
     font-size: 14px;
     min-width: 396px;
@@ -85,36 +87,36 @@
 }
 
 @media all and (max-width: 1280px) {    
-    .form-container__logo_login {
+    .login__logo {
         margin-top: 232px;
     }
     
-    .form-container__register-text_login {
+    .login__register-text {
         margin: 16px 0 232px 0;
     }
 }
 
 @media all and (max-width: 768px) {
-    .form-container_login {
+    .login {
         max-width: 260px;
     }
 
-    .form-container__logo_login {
+    .login__logo {
         margin: 56px auto 0 auto;
     }
 
-    .form-container__greeting_login {
+    .login__greeting {
         margin: 50px auto 80px auto;
         text-align: center;
     }
 
-    .form-container__submit_login {
+    .login__submit {
         font-size: 12px;
         min-width: 260px;
         margin-top: 267px;
     }
     
-    .form-container__register-text_login {
+    .login__register-text {
         font-size: 12px;
         line-height: 14.52px;
         margin: 14px 0 30px 0;

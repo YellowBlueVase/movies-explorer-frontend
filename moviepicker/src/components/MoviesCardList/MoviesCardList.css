@@ -3,12 +3,15 @@
     display: flex;
     flex-direction: column;
     max-width: 1280px;
+    position: relative;
+    z-index: 0;
 }
 
 .movies-cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 20px;
+    row-gap: 32px;
     max-width: 1140px;
 }
 
@@ -27,4 +30,24 @@
     letter-spacing: 0px;
     color: #000000;
     background-color: #F9F9F9;
+    border-radius: 6px;
+}
+
+@media all and (max-width: 1280px) {
+    .movies-cards {
+        grid-template-columns: 1fr 1fr;
+        align-content: space-between;
+        column-gap: 30px;
+        row-gap: 36px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .movies-cards-list {
+        margin: 40px 0 10px 0;
+    }
+    .movies-cards {
+        grid-template-columns: none;
+        row-gap: 20px;
+    }
 }

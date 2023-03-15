@@ -1,11 +1,12 @@
 .footer {
-    max-width: 1280px;
-    min-width: 320px;
+    max-width: 1140px;
+    min-width: 300px;
     position: relative;
     display: flex;
     flex-direction: column;
     font-size: 14x;
     margin: 0 70px;
+    z-index: 0;
 }
 
 .footer__project {

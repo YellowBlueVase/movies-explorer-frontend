@@ -7,7 +7,7 @@ function Header({loggedIn, navMenuOpen, onToggleNavMenu}) {
 
   const hidden = () => {return navMenuOpen ? 'header__hidden' : ''}
 
-  function loggedOutMainHeader() {
+  function loggedInMainHeader() {
     return (
       <div className="header__right">
         <Link to="/movies" className='header__right_text header__right_text_movies'>Фильмы</Link>
@@ -18,16 +18,13 @@ function Header({loggedIn, navMenuOpen, onToggleNavMenu}) {
     )
   }
 
-  function loggedInMainHeader() {
-    if (!loggedIn) {
-      return (
-        <div className="header__right">
-          <Link to="/signup" className='header__right_text header__right_text_signup'>Регистрация</Link>
-          <Link to="/signin" className='header__right_text header__right_text_signin'>Войти</Link>
-        </div>
-      )
-    } 
-    loggedOutMainHeader()
+  function loggedOutMainHeader() {
+    return (
+      <div className="header__right">
+        <Link to="/signup" className='header__right_text header__right_text_signup'>Регистрация</Link>
+        <Link to="/signin" className='header__right_text header__right_text_signin'>Войти</Link>
+      </div>
+    )
   }
 
   return (
@@ -36,11 +33,11 @@ function Header({loggedIn, navMenuOpen, onToggleNavMenu}) {
         <Route path={['/signin', '/signup']} />
         <Route path={['/profile', '/movies', '/saved-movies']}>
           <Link to="/"><div className="header__logo"></div></Link>
-          {loggedOutMainHeader()}
+          {loggedIn ? loggedInMainHeader() : loggedOutMainHeader()}
         </Route>
         <Route path={['/']}>
           <Link to="/"><div className="header__logo"></div></Link>
-          {loggedInMainHeader()}
+          {loggedIn ? loggedInMainHeader() : loggedOutMainHeader()}
         </Route>
       </Switch>
     </header>

@@ -8,6 +8,7 @@
   color: #000000;
   margin: auto;
   position: relative;
+  z-index: 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -15,7 +16,7 @@
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
-  min-width: 320px;
+  min-width: 300px;
   min-height: 100vh;
 }
 
@@ -33,6 +34,6 @@
 
 @media all and (max-width: 320px) {
   .page {
-    min-width: 320px;
+    min-width: 300px;
   }
 }

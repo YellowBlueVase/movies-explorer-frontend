@@ -1,5 +1,7 @@
 .navigation {
     display: none;
+    position:relative;
+    z-index: 2;
 }
 
 @media all and (max-width: 1280px) {
@@ -15,7 +17,6 @@
         width: 520px;
         height: 100%;
         margin: 0;
-        z-index: 98;
         top: 0;
         bottom: 0;
         left: 0;
@@ -29,10 +30,11 @@
         height: 22px;
         margin: 22.44px 22.44px 0 auto;
         outline: none;
+        position:relative;
+        z-index: 2;
         text-decoration: none;
         border: 0;
         background-color: #ffffff;
-        z-index: 100;
         cursor: pointer;
     }
 
@@ -42,7 +44,8 @@
         row-gap: 28px;
         margin: 159px 0 0 0;
         width: 340px;
-        z-index: 100;
+        position:relative;
+        z-index: 2;
     }
 
     .navigation__menu_item {
@@ -52,8 +55,9 @@
         font-weight: 500;
         line-height: 22px;
         letter-spacing: 0px;
-        text-align: center; 
-        z-index: 100;       
+        text-align: center;   
+        position:relative;
+        z-index: 2;
     }
 
     .navigation__menu_item:active {
@@ -65,7 +69,8 @@
         width: 100px;
         height: 32px;
         margin: 621px 0 90px 0;
-        z-index: 100;
+        position:relative;
+        z-index: 2;
     }
 
     .navigation__hidden {

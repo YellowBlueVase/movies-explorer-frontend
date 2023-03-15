@@ -27,44 +27,44 @@ const Login = ({onLogin, greeting}) => {
 
     return (
         <form
-        className={`form-container_login`}
+        className={`login`}
         onSubmit={handleSubmit}
         >
-            <Link to='/'><div className='form-container__logo_login'></div></Link>
-            <div className='form-container__greeting_login'>{greeting}</div>
-            <h3 className='form-container__text_login'>E-mail</h3>
+            <Link to='/'><div className='login__logo'></div></Link>
+            <div className='login__greeting'>{greeting}</div>
+            <h3 className='login__text'>E-mail</h3>
             <input
-                id="form-container__input_email_login"
+                id="login__input_email"
                 type="text"
                 name="email"
                 required
                 minLength="2"
                 maxLength="200"
-                className="form-container__input_login"
+                className="login__input"
                 value={inputData.email || ''}
                 onChange={handleChange}
             />
-            <h3 className='form-container__text_login'>Пароль</h3>
+            <h3 className='login__text'>Пароль</h3>
             <input
-                id="form-container__input_password_login"
+                id="login__input_password"
                 type="password"
                 name="password"
                 required
                 minLength="2"
                 maxLength="200"
-                className="form-container__input_login"
+                className="login__input"
                 value={inputData.password || ''}
                 onChange={handleChange}
                 />
             <button
                 type="submit"
                 name="submit"
-                className="form-container__submit_login">
+                className="login__submit">
                 Войти
             </button>
-            <Link to='/signup' className='form-container__register-text_login'>
+            <Link to='/signup' className='login__register-text'>
                 Еще не зарегистрированы?
-                <div className='form-container__register-text_link_login'>
+                <div className='login__register-text_link'>
                 &nbsp; Регистрация
                 </div>
             </Link>
