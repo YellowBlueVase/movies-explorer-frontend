@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {Link} from "react-router-dom";
 import './Navigation.css';
 
 function Navigation({navMenuOpen, onToggleNavMenu}) {
@@ -6,15 +6,16 @@ function Navigation({navMenuOpen, onToggleNavMenu}) {
     const hidden = () => {return !navMenuOpen ? 'navigation__hidden' : ''}
 
     return (
-        <div className={`navigation ${hidden()}`}>
+        <nav className={`navigation ${hidden()}`}>
+            <div className='navigation__background'></div>
             <button className='navigation__close-button' onClick={onToggleNavMenu}></button>
             <div className='navigation__menu'>
-                <div className='navigation__menu_item'>Главная</div>
-                <div className='navigation__menu_item'>Фильмы</div>
-                <div className='navigation__menu_item'>Сохранённые фильмы</div>
+                <Link to={'/'} className='navigation__menu_item'>Главная</Link>
+                <Link to={'/movies'} className='navigation__menu_item'>Фильмы</Link>
+                <Link to={'/saved-movies'} className='navigation__menu_item'>Сохранённые фильмы</Link>
             </div>
-            <div className='navigation__profile'></div>
-        </div>
+            <Link to={'/profile'} className='navigation__profile'></Link>
+        </nav>
     )
 }
 

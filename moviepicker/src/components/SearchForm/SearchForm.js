@@ -4,8 +4,8 @@ import './SearchForm.css';
 function SearhForm({checkboxText, shortMoviesActive, onShortClick}) {
 
     return (
-        <div>
-            <section className="search-box">
+        <section>
+            <form className="search-box">
                 <div className="search-box__logo"></div>
                 <input className="search-box__movie" placeholder='Фильмы'></input>
                 <input type="submit" value="" className="search-box__submit"></input>
@@ -17,9 +17,9 @@ function SearhForm({checkboxText, shortMoviesActive, onShortClick}) {
                         text={checkboxText}
                     />
                 </div>
-            </section>
+            </form>
             <div className="search-box__separator-h"></div>
-        </div>
+        </section>
     )
 }
 

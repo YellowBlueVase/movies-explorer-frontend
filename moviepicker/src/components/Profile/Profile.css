@@ -1,5 +1,4 @@
 .profile-page {
-    width: 100%;
     max-width: 410px;
     position: relative;
     z-index: 0;
@@ -59,7 +58,6 @@
 .profile-page__separator {
     background-color: #E8E8E8;
     height: 1px;
-    width: 100%;
 }
 
 .profile-page__edit {

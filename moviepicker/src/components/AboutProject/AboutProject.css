@@ -4,7 +4,7 @@
     position: relative;
     z-index: 0;
     max-width: 1280px;
-    min-width: 320px;
+    min-width: 284px;
     margin: 0 70px;
     font-size: 14px;
 }
@@ -22,7 +22,6 @@
 .about-project__separator-h {
     background-color: #000000;
     height: 1px;
-    width: 100%;
 }
 
 .about-project__text-blocks {
@@ -155,6 +154,7 @@
     .about-project__text-blocks {
         flex-direction: column;
         margin: 60px 0 60px 0;
+        column-gap: 0px;
         row-gap: 56px;
     }
 

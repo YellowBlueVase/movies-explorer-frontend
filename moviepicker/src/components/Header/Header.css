@@ -1,5 +1,5 @@
 .header {
-    max-width: 1140px;
+    max-width: 1280px;
     min-width: 292px;
     height: 74px;
     position: relative;
@@ -84,7 +84,7 @@
         margin: 18px 30px;
     }
 
-    /* .header__hidden {
+    .header__hidden {
         display: none;
     }
 
@@ -98,7 +98,7 @@
 
     .header__right_text_saved-movies {
         display: none;
-    } */
+    }
 
     .header__right_navigation {
         display: block;

@@ -1,6 +1,5 @@
 import {Link, Switch, Route} from "react-router-dom";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
-import Navigation from "../Navigation/Navigation";
 import './Header.css';
 
 function Header({loggedIn, navMenuOpen, onToggleNavMenu}) {

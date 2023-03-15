@@ -2,15 +2,9 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import './MoviesCardList.css';
 
 function MoviesCardList({movies}) {
-
-    // let numColumns = 4;
-    // let grid = document.getElementsByClassName('.movies-cards');
-    // const maxGridRows = Math.ceil(movies.length / numColumns)
-    // grid.style.gridTemplateRows = `repeat(${maxGridRows > 4 ? 4 : maxGridRows}, 1fr)`;
-
     return (
-        <div className="movies-card-list">
-            <section className="movies-cards">
+        <section className="movies-card-list">
+            <section className="movies-card-list__grid">
                 {movies.map(movie => {
                 return (
                     <MoviesCard 
@@ -23,8 +17,8 @@ function MoviesCardList({movies}) {
                 );
                 })}
             </section>
-            <div className="more">Ещё</div>
-        </div>
+            <div className="movies-card-list__more">Ещё</div>
+        </section>
     )
 }
 

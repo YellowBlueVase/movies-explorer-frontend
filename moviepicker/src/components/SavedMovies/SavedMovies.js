@@ -15,7 +15,7 @@ function SavedMovies({movies, shortMovies, shortMoviesActive, isLoading, onShort
       }, [])
 
     return (
-        <div className="saved-movies">
+        <section className="saved-movies">
             <SearhForm
                 shortMoviesActive={shortMoviesActive}
                 onShortClick={onShortClick}
@@ -27,7 +27,7 @@ function SavedMovies({movies, shortMovies, shortMoviesActive, isLoading, onShort
                 movies={handlePickMoviesCards()}
                 onCardDelete={onCardDelete}
             />
-        </div>
+        </section>
     )
 }
 

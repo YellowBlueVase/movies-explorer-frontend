@@ -16,7 +16,7 @@ const Profile = ({onSignOut}) => {
     const currentUser = useContext(CurrentUserContext);
     
     return (
-        <div className='profile-page'>
+        <section className='profile-page'>
             <h2 className="profile-page__greeting">{`Привет, ${currentUser.name}`}</h2>
             <div className="profile-page__field" id="name">
                 <h3 className="profile-page__field_name">Имя</h3>
@@ -29,7 +29,7 @@ const Profile = ({onSignOut}) => {
             </div>
             <div className='profile-page__edit'>Редактировать</div>
             <div className='profile-page__signout' onClick={onSignOut}>Выйти из аккаунт</div>
-        </div>
+        </section>
     )
     };
 

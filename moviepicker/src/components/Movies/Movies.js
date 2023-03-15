@@ -15,7 +15,7 @@ function Movies({movies, shortMovies, shortMoviesActive, isLoading, onShortClick
         }, [])
 
     return (
-        <main className="movies-page">
+        <section className="movies-page">
             <SearchForm
                 shortMoviesActive={shortMoviesActive}
                 onShortClick={onShortClick}
@@ -26,7 +26,7 @@ function Movies({movies, shortMovies, shortMoviesActive, isLoading, onShortClick
                 movies={handlePickMoviesCards()}
                 onCardDelete={onCardDelete}
             />
-        </main>
+        </section>
     );
 }
 

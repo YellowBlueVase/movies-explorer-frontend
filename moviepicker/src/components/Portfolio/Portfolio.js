@@ -1,11 +1,20 @@
+import {Link} from "react-router-dom";
+import { ADAPTIVE_WEB_GIT, SPA_WEB_GIT, STATIC_WEB_GIT } from "../../utils/constants";
 import './Portfolio.css';
 
 function Portfolio() {
 
-    const portfolio = ['Статичный сайт', 'Адаптивный сайт', 'Одностраничное приложение']
+    const portfolio = [
+        {name: 'Статичный сайт',
+        link: STATIC_WEB_GIT}, 
+        {name: 'Адаптивный сайт',
+        link: ADAPTIVE_WEB_GIT},
+        {name: 'Одностраничное приложение',
+        link: SPA_WEB_GIT}
+    ]
 
     return (
-        <div className="portfolio">
+        <section className="portfolio">
             <div className='portfolio__title'>Портфолио</div>
             <div className='portfolio__box'>
                 {portfolio.map((item, index) => {
@@ -18,17 +27,17 @@ function Portfolio() {
                       ); 
 
                     return (
-                        <div>
-                            <div key={`${index}1`} className='portfolio__item'>
-                                <div key={`${index}2`} className="portfolio__item_name">{item}</div>
-                                <div key={`${index}3`} className="portfolio__item_link-logo">↗</div>
+                        <a href={item.link} className='portfolio__link' target="_blank" key={index}>
+                            <div className='portfolio__item'>
+                                <div className="portfolio__item_name">{item.name}</div>
+                                <div className="portfolio__item_link-logo"></div>
                             </div>
-                            <div key={`${index}4`} className={separatorTag}></div>
-                        </div>
+                            <div className={separatorTag}></div>
+                        </a>
                     )}
                 )}
             </div>
-        </div>
+        </section>
     )
 }
 

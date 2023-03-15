@@ -43,7 +43,7 @@ function MoviesCard({card, onCardClick, onCardLike, onCardDelete}) {
   }, []);
 
   return (
-    <div className="movie-card">
+    <section className="movie-card">
       <img
         src={card.image}
         className="movie-card__image"
@@ -55,7 +55,7 @@ function MoviesCard({card, onCardClick, onCardLike, onCardDelete}) {
         <button className='movie-card__footer_short' id={cardShortButtonClassName}></button>
         <button className={cardDeleteButtonClassName}></button>
       </div>
-    </div>
+    </section>
   );
 }
 
