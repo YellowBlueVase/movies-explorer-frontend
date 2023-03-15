@@ -7,7 +7,7 @@ function SearhForm({checkboxText, shortMoviesActive, onShortClick}) {
         <section>
             <form className="search-box">
                 <div className="search-box__logo"></div>
-                <input className="search-box__movie" placeholder='Фильмы'></input>
+                <input required className="search-box__movie" placeholder='Фильмы'></input>
                 <input type="submit" value="" className="search-box__submit"></input>
                 <div className="search-box__separator-v"></div>
                 <div className='search-box__filter'> 
