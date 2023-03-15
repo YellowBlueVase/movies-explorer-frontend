@@ -34,6 +34,7 @@
     border: 0;
     background-color: #F9F9F9;
     width: 100%;
+    cursor: pointer;
 }
 
 .search-box__movie:focus {
