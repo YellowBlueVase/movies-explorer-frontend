@@ -16,7 +16,7 @@ function Portfolio() {
     return (
         <section className="portfolio">
             <div className='portfolio__title'>Портфолио</div>
-            <div className='portfolio__box'>
+            <ul className='portfolio__box'>
                 {portfolio.map((item, index) => {
                     let separator = true;
                     if (index === portfolio.length - 1) {
@@ -27,16 +27,18 @@ function Portfolio() {
                       ); 
 
                     return (
-                        <a href={item.link} className='portfolio__link' target="_blank" key={index}>
-                            <div className='portfolio__item'>
-                                <div className="portfolio__item_name">{item.name}</div>
-                                <div className="portfolio__item_link-logo"></div>
+                        <li>
+                        <a href={item.link} className='portfolio__box_link' target="_blank" key={index}>
+                            <div className='portfolio__box_item'>
+                                <div className="portfolio__box_item_name">{item.name}</div>
+                                <div className="portfolio__box_item_link-logo"></div>
                             </div>
                             <div className={separatorTag}></div>
                         </a>
+                        </li>
                     )}
                 )}
-            </div>
+            </ul>
         </section>
     )
 }
