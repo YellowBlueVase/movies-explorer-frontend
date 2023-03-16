@@ -34,11 +34,23 @@
     border: 0;
     background-color: #F9F9F9;
     width: 100%;
+    outline: none;
     cursor: pointer;
 }
 
+.search-box__movie:focus::placeholder {
+    color: #000000;
+}
+
+.search-box__movie:hover::placeholder {
+    color: #000000;
+}
+
 .search-box__movie:focus {
-    outline: none;
+    color: #000000;
+}
+
+.search-box__movie:hover {
     color: #000000;
 }
 
