@@ -1,5 +1,4 @@
-// export const BASE_URL = 'https://api.moviepicker.nomoredomains.work';
-export const BASE_URL = 'http://localhost:3000'
+export const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://api.moviepicker.nomoredomains.work' : 'http://localhost:3000';
 
 function getResponseData(res) {
     if (res.ok) {

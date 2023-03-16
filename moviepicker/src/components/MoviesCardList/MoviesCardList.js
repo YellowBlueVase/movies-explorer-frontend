@@ -2,6 +2,66 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import './MoviesCardList.css';
 
 function MoviesCardList({movies}) {
+
+    const dummyMoviesForReviewer = [
+        {
+            "_id" : "1", 
+            "country" : "Russia",
+            "director" : "Burjua",
+            "duration" : "20",
+            "year" : "2020",
+            "description" : "Some description",
+            "image" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
+            "trailer" : "https://www.youtube.com/watch?v=jGfiPs9zuhE",
+            "nameRU" : "ДЖОКЕР",
+            "nameEN" : "Joker",
+            "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
+            "movieId" : "23231"
+        },
+        {
+            "_id" : "2",
+            "country" : "England",
+            "director" : "Burjua",
+            "duration" : "129",
+            "year" : "2015",
+            "description" : "Some description",
+            "image" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
+            "trailer" : "https://www.youtube.com/watch?v=jGfiPs9zuhE",
+            "nameRU" : "Яблоневый сад",
+            "nameEN" : "Joker",
+            "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
+            "movieId" : "23231"
+        },
+        {
+            "_id" : "1", 
+            "country" : "Russia",
+            "director" : "Burjua",
+            "duration" : "20",
+            "year" : "2020",
+            "description" : "Some description",
+            "image" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
+            "trailer" : "https://www.youtube.com/watch?v=jGfiPs9zuhE",
+            "nameRU" : "ДЖОКЕР",
+            "nameEN" : "Joker",
+            "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
+            "movieId" : "23231"
+        },
+        {
+            "_id" : "2",
+            "country" : "England",
+            "director" : "Burjua",
+            "duration" : "129",
+            "year" : "2015",
+            "description" : "Some description",
+            "image" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
+            "trailer" : "https://www.youtube.com/watch?v=jGfiPs9zuhE",
+            "nameRU" : "Яблоневый сад",
+            "nameEN" : "Joker",
+            "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
+            "movieId" : "23231"
+        }
+    ]
+
     return (
         <section className="movies-card-list">
             <section className="movies-card-list__grid">
@@ -10,6 +70,17 @@ function MoviesCardList({movies}) {
                     <MoviesCard 
                     key={movie._id} 
                     card={movie}
+                    onCardClick
+                    onCardLike
+                    onCardDelete
+                    />
+                );
+                })}
+                {dummyMoviesForReviewer.map(dummy => {
+                return (
+                    <MoviesCard 
+                    key={dummy._id} 
+                    card={dummy}
                     onCardClick
                     onCardLike
                     onCardDelete
