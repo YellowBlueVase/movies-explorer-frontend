@@ -84,9 +84,9 @@
         margin: 18px 30px;
     }
 
-    .header__hidden {
+    /* .header__hidden {
         display: none;
-    }
+    } */
 
     .header__right_profile {
         display: none;
