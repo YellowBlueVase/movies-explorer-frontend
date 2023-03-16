@@ -14,7 +14,7 @@ function MoviesCard({card, onCardClick, onCardLike, onCardDelete}) {
   ); 
 
   const cardShortButtonClassName = (
-    `${shortMovie && !pathSavedMovies ? 'short' : 'hidden'}`
+    `${shortMovie && !pathSavedMovies ? 'liked' : 'hidden'}`
   ); 
 
   function time_convert(num) { 
@@ -58,7 +58,7 @@ function MoviesCard({card, onCardClick, onCardLike, onCardDelete}) {
       <div className="movie-card__footer">
         <div className="movie-card__footer_title">{card.nameRU}</div>
         <div className="movie-card__footer_duration">{time_convert(card.duration)}</div>
-        <button className='movie-card__footer_short' id={cardShortButtonClassName}></button>
+        <button className='movie-card__footer_like' id={cardShortButtonClassName}></button>
         <button className={cardDeleteButtonClassName}></button>
       </div>
     </section>

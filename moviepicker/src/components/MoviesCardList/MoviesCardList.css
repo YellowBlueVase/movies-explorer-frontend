@@ -36,7 +36,7 @@
 @media all and (max-width: 1280px) {
     .movies-card-list__grid {
         grid-template-columns: 1fr 1fr;
-        align-content: space-between;
+        justify-content: space-between;
         column-gap: 30px;
         row-gap: 36px;
     }
@@ -48,6 +48,7 @@
     }
     .movies-card-list__grid {
         grid-template-columns: none;
+        align-self: center;
         row-gap: 20px;
     }
 }
