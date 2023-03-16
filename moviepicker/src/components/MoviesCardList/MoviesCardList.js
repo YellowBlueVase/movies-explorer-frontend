@@ -1,8 +1,11 @@
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import './MoviesCardList.css';
 
 function MoviesCardList({movies}) {
-
+    const dummyCurrentUser = useContext(CurrentUserContext);
+    console.log(dummyCurrentUser);
     const dummyMoviesForReviewer = [
         {
             "_id" : "1", 
@@ -16,7 +19,8 @@ function MoviesCardList({movies}) {
             "nameRU" : "ДЖОКЕР",
             "nameEN" : "Joker",
             "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "movieId" : "23231"
+            "movieId" : "23231",
+            "owner" : dummyCurrentUser._id,
         },
         {
             "_id" : "2",
@@ -33,7 +37,7 @@ function MoviesCardList({movies}) {
             "movieId" : "23231"
         },
         {
-            "_id" : "1", 
+            "_id" : "3", 
             "country" : "Russia",
             "director" : "Burjua",
             "duration" : "20",
@@ -44,10 +48,11 @@ function MoviesCardList({movies}) {
             "nameRU" : "ДЖОКЕР",
             "nameEN" : "Joker",
             "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "movieId" : "23231"
+            "movieId" : "23231",
+            "owner" : dummyCurrentUser._id,
         },
         {
-            "_id" : "2",
+            "_id" : "4",
             "country" : "England",
             "director" : "Burjua",
             "duration" : "129",
