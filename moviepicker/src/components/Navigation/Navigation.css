@@ -53,6 +53,10 @@
         cursor: pointer;
     }
 
+    .navigation__close-button:hover {
+        opacity: .8;
+    }
+
     .navigation__menu {
         display: flex;
         flex-direction: column;
@@ -106,6 +110,10 @@
         z-index: 2;
     }
 
+    .navigation__profile:hover {
+        opacity: .8;
+    }
+
     .navigation__hidden {
         display: none;
     }
@@ -136,6 +144,5 @@
         left: 0;
         margin: 0 auto;
         min-width: 300px;
-        /* right: 110px; */
     }
 }

@@ -68,8 +68,8 @@ function MoviesCardList({movies}) {
     ]
 
     return (
-        <section className="movies-card-list">
-            <section className="movies-card-list__grid">
+        <div className="movies-card-list">
+            <div className="movies-card-list__grid">
                 {movies.map(movie => {
                 return (
                     <MoviesCard 
@@ -92,9 +92,9 @@ function MoviesCardList({movies}) {
                     />
                 );
                 })}
-            </section>
+            </div>
             <div className="movies-card-list__more">Ещё</div>
-        </section>
+        </div>
     )
 }
 

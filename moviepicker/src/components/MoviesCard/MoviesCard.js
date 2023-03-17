@@ -13,7 +13,7 @@ function MoviesCard({card, onCardClick, onCardLike, onCardDelete}) {
   }
 
   return (
-    <section className="movie-card">
+    <div className="movie-card">
       <img
         src={card.image}
         className="movie-card__image"
@@ -24,7 +24,7 @@ function MoviesCard({card, onCardClick, onCardLike, onCardDelete}) {
         <div className="movie-card__footer_duration">{time_convert(card.duration)}</div>
         <button className={`${randomButton}`}></button>
       </div>
-    </section>
+    </div>
   );
 }
 
