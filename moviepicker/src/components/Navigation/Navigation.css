@@ -42,9 +42,10 @@
         background-size: contain;
         width: 22px;
         height: 22px;
-        margin: 22.44px 22.44px 0 auto;
         outline: none;
-        position:relative;
+        position:fixed;
+        top: 22.44px;
+        right: 22.44px;
         z-index: 2;
         text-decoration: none;
         border: 0;
@@ -55,13 +56,11 @@
     .navigation__menu {
         display: flex;
         flex-direction: column;
-        margin: 0 auto 0 auto;
         row-gap: 28px;
         top: 159px;
-        right: 0;
-        left: 0;
-        width: 340px;
-        position: absolute;
+        right: 90px;
+        min-width: 340px;
+        position: fixed;
         z-index: 2;
     }
 
@@ -98,14 +97,12 @@
         background-size: contain;
         width: 100px;
         height: 32px;
-        top: 902px;
-        right: 0;
-        left: 0;
-        margin: 0 auto 0 auto;
+        bottom: 90px;
+        right: 210px;
         outline: none;
         color: black;
         text-decoration: none;
-        position:absolute;
+        position:fixed;
         z-index: 2;
     }
 
@@ -120,16 +117,25 @@
     }
 
     .navigation__close-button {
-        margin: 13.44px 13.44px 0 0;
+        top: 13.44px;
+        right: 13.44px;
     }
 
     .navigation__menu {
-        row-gap: 24px;
         top: 144px;
-        width: 300px;
+        /* right: 10px; */
+        right: 0;
+        left: 0;
+        min-width: 300px;
+        margin: 0 auto;
     }
 
     .navigation__profile {
-        top: 702px;
+        bottom: 46px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        min-width: 300px;
+        /* right: 110px; */
     }
 }

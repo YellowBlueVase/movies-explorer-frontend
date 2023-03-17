@@ -32,37 +32,34 @@ const Register = ({ onRegister, greeting }) => {
         <div className='form-container__greeting_register'>{greeting}</div>
         <h3 className='form-container__text_register'>Имя</h3>
         <input
-            id="form-container__input_name_register"
             type="text"
             name="name"
             required
             minLength="2"
             maxLength="200"
-            className="form-container__input_register"
+            className="form-container__input_register form-container__input_register_name"
             value={inputData.name || ''}
             onChange={handleChange}
         />
         <h3 className='form-container__text_register'>E-mail</h3>
         <input
-            id="form-container__input_email_register"
             type="text"
             name="email"
             required
             minLength="2"
             maxLength="200"
-            className="form-container__input_register"
+            className="form-container__input_register form-container__input_register_email"
             value={inputData.email || ''}
             onChange={handleChange}
         />
         <h3 className='form-container__text_register'>Пароль</h3>
         <input
-            id="form-container__input_password_register"
             type="password"
             name="password"
             required
             minLength="2"
             maxLength="200"
-            className="form-container__input_register"
+            className="form-container__input_register form-container__input_register_password"
             value={inputData.password || ''}
             onChange={handleChange}
             />

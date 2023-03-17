@@ -26,7 +26,7 @@
 }
 
 .portfolio__box {
-    color: #000000;
+    color: rgba(0, 0, 0, 1);
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -51,6 +51,10 @@
     line-height: 50px;
     letter-spacing: -0.04em;
     text-align: left;
+}
+
+.portfolio__box_item_name:hover {
+    color: rgba(0, 0, 0, .7);
 }
 
 .portfolio__box_item_link-logo {

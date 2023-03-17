@@ -7,6 +7,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
+    line-height: 18px;
     margin: 18px 70px;
     justify-self: center;
     z-index: 1;
@@ -31,7 +32,7 @@
 }
 
 .header__right_text:hover {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .header__right_text_signup {
@@ -56,8 +57,16 @@
     margin-right: 21px;
 }
 
+.header__right_text_movies:focus {
+    font-weight: 500;
+}
+
 .header__right_text_saved-movies {
     margin-right: 50px;
+}
+
+.header__right_text_saved-movies:focus {
+    font-weight: 500;
 }
 
 .header__right_profile {
@@ -83,10 +92,6 @@
         font-size: 12px;
         margin: 18px 30px;
     }
-
-    /* .header__hidden {
-        display: none;
-    } */
 
     .header__right_profile {
         display: none;

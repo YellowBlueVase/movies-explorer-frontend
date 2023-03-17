@@ -62,7 +62,7 @@
     top: 14px;
 }
 
-#liked {
+.movie-card__footer_like_liked {
     background-color: #2BE080;
     width: 16px;
     height: 16px;

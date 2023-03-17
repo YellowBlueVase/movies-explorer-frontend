@@ -10,9 +10,9 @@ import './Main.css';
 
 function Main() {  
   const blocks = [
-    {name: "О проекте", class: "about-project"}, 
-    {name: "Технологии", class: "technologies"}, 
-    {name: "Студент", class: "about-me"}, 
+    {name: "О проекте", link: "about-project"}, 
+    {name: "Технологии", link: "technologies"}, 
+    {name: "Студент", link: "about-me"}, 
   ];
 
   useEffect(() => {

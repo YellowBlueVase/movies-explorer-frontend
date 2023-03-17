@@ -37,11 +37,11 @@
 
 }
 
-#name {
+.profile-page__field_first {
     margin-bottom: 16px;
 }
 
-#email {
+.profile-page__field_last {
     margin: 17px 0 220px 0;
 }
 
@@ -69,15 +69,23 @@
     cursor: pointer;
 }
 
+.profile-page__edit:hover {
+    opacity: .7;
+}
+
 .profile-page__signout {
     font-family: Inter;
     letter-spacing: 0px;
     display: block;
     text-align: center;
     text-decoration: none;
-    color: #FF3055;
+    color: rgba(255, 48, 85, 1);;
     margin: 0 0 70px 0;
     cursor: pointer;
+}
+
+.profile-page__signout:hover {
+    color: rgba(255, 48, 85, .7);;
 }
 
 @media all and (max-width: 1280px) {
@@ -85,7 +93,7 @@
         margin: 236px 0 96px 0;
     }
     
-    #email {
+    .profile-page__field_last {
         margin: 17px 0 210px 0;
     }
     
@@ -105,7 +113,7 @@
         margin: 70px 0 80x 0;
     }
     
-    #email {
+    .profile-page__field_last {
         margin: 17px 0 379px 0;
     }
     

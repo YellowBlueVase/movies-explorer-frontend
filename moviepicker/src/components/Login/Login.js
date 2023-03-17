@@ -34,25 +34,23 @@ const Login = ({onLogin, greeting}) => {
             <div className='login__greeting'>{greeting}</div>
             <h3 className='login__text'>E-mail</h3>
             <input
-                id="login__input_email"
                 type="text"
                 name="email"
                 required
                 minLength="2"
                 maxLength="200"
-                className="login__input"
+                className="login__input login__input_email"
                 value={inputData.email || ''}
                 onChange={handleChange}
             />
             <h3 className='login__text'>Пароль</h3>
             <input
-                id="login__input_password"
                 type="password"
                 name="password"
                 required
                 minLength="2"
                 maxLength="200"
-                className="login__input"
+                className="login__input login__input_password"
                 value={inputData.password || ''}
                 onChange={handleChange}
                 />

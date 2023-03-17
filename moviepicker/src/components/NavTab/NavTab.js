@@ -1,8 +1,16 @@
 import './NavTab.css';
 
 function NavTab({block, link}) {
+
+    const handleClickScroll = () => {
+        const element = document.getElementByClassName(link);
+        if (element) {
+          element.scrollIntoView();
+        }
+      };
+
     return (
-        <a href={`#${link}`} className="block">{block}</a>
+        <button className="block" onClick={handleClickScroll}>{block}</button>
     )
 }
 

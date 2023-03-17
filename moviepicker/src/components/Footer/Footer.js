@@ -12,8 +12,8 @@ function Footer() {
             <div className="footer__separator"></div>
             <div className="footer__links">
               <p className="footer__links_copyright">&#169; {new Date().getFullYear()}</p>
-              <a href={PRAKTIKUM_PAGE} className="footer__links_link" id="praktikum" target="_blank">Яндекс.Практикум</a>
-              <a href={GITHUB_PAGE} className="footer__links_link" id="gitHub" target="_blank">Github</a>
+              <a href={PRAKTIKUM_PAGE} className="footer__links_link" target="_blank">Яндекс.Практикум</a>
+              <a href={GITHUB_PAGE} className="footer__links_link" target="_blank">Github</a>
             </div>
           </Route>
         </Switch>

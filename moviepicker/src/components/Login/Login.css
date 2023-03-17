@@ -39,11 +39,11 @@
     outline: none;
 }
 
-#login__input_email {
+.login__input_email {
     margin-bottom: 24px;
 }
 
-#login__input_password {
+.login__input_password {
     margin-bottom: 42px;
 }
 
@@ -62,8 +62,11 @@
 }
 
 .login__register-text_link {
-    color: #3456F3;
-    
+    color: rgba(52, 86, 243, 1);
+}
+
+.login__register-text_link:hover {
+    color: rgba(52, 86, 243, .7);
 }
 
 .login__text {
@@ -78,11 +81,15 @@
     font-size: 14px;
     min-width: 396px;
     height: 45px;
-    background-color: #3456F3;
+    background-color: rgba(52, 86, 243, 1);
     border: 0;
     border-radius: 3px;
     margin-top: 179px;
     cursor: pointer;
+}
+
+.login__submit:hover {
+    background-color: rgba(52, 86, 243, .8);
 }
 
 @media all and (max-width: 1280px) {    

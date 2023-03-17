@@ -29,8 +29,12 @@
     line-height: 36px;
     letter-spacing: 0px;
     color: #000000;
-    background-color: #F9F9F9;
+    background-color: rgba(249, 249, 249, 1);
     border-radius: 6px;
+}
+
+.movies-card-list__more:hover {
+    background-color: rgba(249, 249, 249, .8);
 }
 
 @media all and (max-width: 1280px) {

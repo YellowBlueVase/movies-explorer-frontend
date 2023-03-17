@@ -33,15 +33,15 @@
     cursor: pointer;
 }
 
-#form-container__input_email_register {
+.form-container__input_register_email {
     margin-bottom: 24px;
 }
 
-#form-container__input_name_register {
+.form-container__input_register_name {
     margin-bottom: 24px;
 }
 
-#form-container__input_password_register {
+.form-container__input_register_password {
     margin-bottom: 83px;
 }
 
@@ -67,8 +67,11 @@
 }
 
 .form-container__register-text_link_register {
-    color: #3456F3;
-    
+    color: rgba(52, 86, 243, 1);
+}
+
+.form-container__register-text_link_register:hover {
+    color: rgba(52, 86, 243, .7);
 }
 
 .form-container__text_register {
@@ -83,11 +86,15 @@
     font-size: 14px;
     min-width: 396px;
     height: 45px;
-    background-color: #3456F3;
+    background-color: rgba(52, 86, 243, 1);
     border: 0;
     border-radius: 3px;
     margin-top: 69px;
     cursor: pointer;
+}
+
+.form-container__submit_register:hover {
+    background-color: rgba(52, 86, 243, .8);
 }
 
 @media all and (max-width: 1280px) {

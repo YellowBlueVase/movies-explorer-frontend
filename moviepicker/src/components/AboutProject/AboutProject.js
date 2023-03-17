@@ -3,7 +3,7 @@ import './AboutProject.css';
 function AboutProject() {
 
     return (
-        <section className="about-project" id="about-project">
+        <section className="about-project">
             <div className='about-project__title'>О проекте</div>
             <div className='about-project__separator-h'></div>
             <div className="about-project__text-blocks">
@@ -18,11 +18,11 @@ function AboutProject() {
             </div>
             <div className="about-project__progress-bar">
                 <div className="about-project__progress-bar_backend">
-                    <div className="about-project__progress-bar_bar" id="backend">1 неделя</div>
+                    <div className="about-project__progress-bar_bar">1 неделя</div>
                     <div className="about-project__progress-bar_name">Back-end</div>
                 </div>
                 <div className="about-project__progress-bar_frontend">
-                <div className="about-project__progress-bar_bar" id="frontend">4 недели</div>
+                <div className="about-project__progress-bar_bar">4 недели</div>
                     <div className="about-project__progress-bar_name">Front-end</div>
                 </div>
             </div>

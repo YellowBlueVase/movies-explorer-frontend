@@ -60,10 +60,14 @@
     background-position: center; 
     min-width: 80px;
     height: 34px;
-    background-color: #3456F3;
+    background-color: rgba(52, 86, 243, 1);
     border: 0;
     border-radius: 100px;
     cursor: pointer;
+}
+
+.search-box__submit:hover {
+    background-color: rgba(52, 86, 243, .8);
 }
 
 .search-box__separator-v {
