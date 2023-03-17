@@ -78,11 +78,11 @@
     height: 36px;
 }
 
-#backend {
+.about-project__progress-bar_bar_backend {
     background-color: #2BE080;
 }
 
-#frontend {
+.about-project__progress-bar_bar_frontend {
     background-color: #F2F2F2;
 }
 
