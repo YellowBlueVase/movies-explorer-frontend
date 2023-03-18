@@ -81,7 +81,7 @@
 }
 
 .about-me__github:hover {
-    font-weight: 800;
+    font-weight: 500;
 }
 
 @media all and (max-width: 1280px) {
