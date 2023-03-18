@@ -27,7 +27,7 @@ function Main() {
             <NavTab 
               key={block.name}
               block={block.name}
-              link={block.class}
+              link={block.link}
             />
           )
         })}

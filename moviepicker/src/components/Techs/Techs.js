@@ -5,7 +5,7 @@ function Techs() {
     const technologies = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
 
     return (
-        <section className="techs">
+        <section className="techs" id="technologies">
             <div className='techs__title'>Технологии</div>
             <div className='techs__separator-h'></div>
             <div className='techs__header'>7 технологий</div>
