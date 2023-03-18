@@ -1,0 +1,141 @@
+.header {
+    max-width: 1280px;
+    min-width: 292px;
+    height: 74px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 18px 70px;
+    justify-self: center;
+    z-index: 1;
+}
+
+.header__logo {
+    background-image: url("../../images/logo_login.svg");
+    width: 38px;
+    height: 38px;
+}
+
+.header__logo:hover {
+    opacity: .8;
+}
+
+.header__right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header__right_text {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.header__right_text:hover {
+    font-weight: 500;
+}
+
+.header__right_text_signup {
+    margin-right: 30px;
+}
+
+.header__right_text_signin {
+    width: 76px;
+    height: 32px;
+    border-radius: 3px;
+    background-color: #2BE080;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+}
+
+.header__right_text_signin:hover {
+    color: #ffffff;
+}
+
+.header__right_text_movies {
+    margin-right: 21px;
+}
+
+.header__right_text_movies:focus {
+    font-weight: 500;
+}
+
+.header__right_text_saved-movies {
+    margin-right: 50px;
+}
+
+.header__right_text_saved-movies:focus {
+    font-weight: 500;
+}
+
+.header__right_profile {
+    background-image: url("../../images/account_logo.svg");
+    width: 100px;
+    height: 32px;
+}
+
+.header__right_profile:hover {
+    opacity: .8;
+}
+
+.header__right_navigation {
+    background-image: url("../../images/navigation_logo.svg");
+    width: 44px;
+    height: 44px;
+    display: none;
+    cursor: pointer;
+    text-decoration: none;
+    outline: none;
+    background-color: #ffffff;
+    border: none;
+}
+
+.header__right_navigation:hover {
+    opacity: .8;
+}
+
+@media all and (max-width: 1280px) {
+    .header {
+        font-size: 12px;
+        margin: 18px 30px;
+    }
+
+    .header__right_profile {
+        display: none;
+    }
+
+    .header__right_text_movies {
+        display: none;
+    }
+
+    .header__right_text_saved-movies {
+        display: none;
+    }
+
+    .header__right_navigation {
+        display: block;
+    }
+
+    .header__right_text_signin {
+        width: 56px;
+        height: 26px;
+        line-height: 26px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .header {
+        font-size: 10px;
+        margin: 18px 14px;
+    }
+
+    .header__right_text_signin {
+        width: 56px;
+        height: 26px;
+    }
+}

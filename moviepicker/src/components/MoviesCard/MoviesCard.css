@@ -1,0 +1,103 @@
+.movie-card {
+    position: relative;
+    width: 270px;
+    height: 218px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 16px 24px 0px rgba(0, 0, 0, 0.05);
+}
+
+.movie-card__image {
+    border-radius: 10px 10px 0 0;
+}
+
+.movie-card__footer {
+    position: relative;
+}
+
+.movie-card__footer_title {
+    font-family: Inter;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+    width: 206px;
+    position: absolute;
+    left: 12px;
+    top: 14px;
+}
+
+.movie-card__footer_duration {
+    font-family: Inter;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    letter-spacing: 0px;
+    text-align: left;
+    width: 206px;
+    color: #A0A0A0;
+    position: absolute;
+    left: 12px;
+    top: 40px;
+}
+
+.movie-card__footer_like {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    background-color: #F9F9F9;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.09);
+    border-radius: 50px;
+    position: absolute;
+    padding: 0;
+    right: 12px;
+    top: 14px;
+}
+
+.movie-card__footer_like_liked {
+    background-color: #2BE080;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+}
+
+.movie-card__footer_delete {
+    background-image: url('../../images/delete_cross.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 14px;
+    right: 12px;
+    background-color: #FFFFFF;
+    border: 0px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+@media all and (max-width: 1280px) {
+    .movie-card {
+        width: 339px;
+        height: 257px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .movie-card {
+        width: 300px;
+        height: 235px;
+    }
+}
