@@ -1,10 +1,10 @@
 import './FilterCheckbox.css';
 
-function FilterCheckbox({text, shortMoviesActive, onShortClick}) {
+function FilterCheckbox({text, handleShortsActive}) {
 
     return (
         <div className='switcher-box'>
-            <input type="checkbox" defaultChecked={shortMoviesActive} className="switcher" onChange={onShortClick}></input>
+            <input type="checkbox" className="switcher" onChange={handleShortsActive}></input>
             <div className="switcher_text">{text}</div>
         </div>
     )

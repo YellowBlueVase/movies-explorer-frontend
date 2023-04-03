@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://api.moviepicker.nomoredomains.work' : 'http://localhost:3000';
+import { BASE_URL } from "./constants";
 
 function getResponseData(res) {
     if (res.ok) {

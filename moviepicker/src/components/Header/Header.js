@@ -1,10 +1,13 @@
-import {Link, Switch, Route} from "react-router-dom";
+import {Link, Switch, Route, useLocation} from "react-router-dom";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import './Header.css';
 
 function Header({loggedIn, navMenuOpen, onToggleNavMenu}) {
 
-  const hidden = () => {return navMenuOpen ? 'header__hidden' : ''}
+  const currentPath = useLocation().pathname;
+  const page404 = document.title === "404 - Страница не найдена"
+  const locationWithNoHeader = currentPath === '/signup' || currentPath === '/signin' || page404;
+  const hidden = () => {return locationWithNoHeader === true ? 'header__hidden' : navMenuOpen ? 'header__hidden' : ''}
 
   function loggedInMainHeader() {
     return (
@@ -30,14 +33,14 @@ function Header({loggedIn, navMenuOpen, onToggleNavMenu}) {
     <header className={`header ${hidden()}`}>
       <Switch>
         <Route path={['/signin', '/signup']} />
-        <Route path={['/profile', '/movies', '/saved-movies']}>
-          <Link to="/"><div className="header__logo"></div></Link>
-          {loggedIn ? loggedInMainHeader() : loggedOutMainHeader()}
-        </Route>
         <Route path={['/']}>
           <Link to="/"><div className="header__logo"></div></Link>
           {loggedIn ? loggedInMainHeader() : loggedOutMainHeader()}
         </Route>
+        <ProtectedRoute path={['/profile', '/movies', '/saved-movies']}>
+          <Link to="/"><div className="header__logo"></div></Link>
+          {loggedIn ? loggedInMainHeader() : loggedOutMainHeader()}
+        </ProtectedRoute>
       </Switch>
     </header>
   );
