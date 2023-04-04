@@ -8,7 +8,6 @@ function SavedMovies({movies, isLoading, handleShortsActive, handleSearchSubmit,
 
     useEffect(() => {
         document.title = "Сохранённые фильмы"
-        console.log('MOVIES FROM SAVEDMOVIES', movies)
       }, [])
 
     return (

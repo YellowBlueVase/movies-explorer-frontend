@@ -34,10 +34,8 @@ function MoviesCardList({movies, savedMovies, isLoading, onCardLike, onCardDelet
     function handleIncreaseNumberOfCardsOnScreen() {
         if (shownCards >= moviesLength) {
             setShownCards(moviesLength)
-            console.log('SHOWN CARDS 1 >>>>', shownCards, 'MOVIES LENGTH>>>', moviesLength)
         } else {
             setShownCards(shownCards + moreCards.cardsAddedState)
-            console.log('SHOWN CARDS 2 >>>>', shownCards, 'MOVIES LENGTH>>>', moviesLength)
         }
     }
 
@@ -51,14 +49,9 @@ function MoviesCardList({movies, savedMovies, isLoading, onCardLike, onCardDelet
     useEffect(() => {
         handleSetMoviesLength();
         handleMoreCards();
-        console.log(moreCards.maxInitCards)
         setShownCards(moreCards.maxInitCards);
         handleShowFracturedCards(movies);
     }, [movies, savedMovies, moviesLength, isLoading, windowWidth, shownCards])
-
-    useEffect(() => {
-        console.log(moviesFractured)
-    }, [moviesFractured])
 
     return (
         <div className="movies-card-list">

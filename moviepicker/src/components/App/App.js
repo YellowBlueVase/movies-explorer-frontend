@@ -37,10 +37,10 @@ function App() {
   function handleResize() {
     const width = window.innerWidth;
     setWindowWidth(width);
-    console.log(windowWidth)
   }
 
   function handleMovieCardLike(movie) {
+    console.log(movie)
     mainApi.addNewMovieCard(movie)
     .then((newMovie) => {
       setSavedMovies([newMovie, ...savedMovies])
@@ -49,7 +49,6 @@ function App() {
   }
 
   function handleMovieCardDelete(movieId) {
-    console.log('TO DELETE ID >>>', movieId)
     mainApi.deleteCard(movieId)
     .then(() => {
       setSavedMovies(current => current.filter(item => {
@@ -64,7 +63,6 @@ function App() {
 
   function handleShortsActive() {
     setShortsActive(!shortsActive)
-    console.log('SHORTS ACTIVE', shortsActive)
   }
 
   function handleSearchMoviesSubmit(values) {

@@ -12,7 +12,6 @@ function MoviesCard({card, savedMovies, onCardLike, onCardDelete}) {
     savedMovies.map((movie) => {
       if (movie.movieId === card.id) {
         setIsSavedMovie(true);
-        console.log('handleCheckIfCardIsSaved >>>>', movie._id)
         setCardId(movie._id)
       }
     })

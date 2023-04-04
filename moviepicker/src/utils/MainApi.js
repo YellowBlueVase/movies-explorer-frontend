@@ -72,7 +72,6 @@ export class Api {
     }
 
     addNewMovieCard(data) {
-      console.log('ADD NEW MOVIE CARD DATA>>>', data)
       return fetch(this._urlMovies, {
         method: 'POST',
         headers: {
