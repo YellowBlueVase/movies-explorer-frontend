@@ -43,7 +43,8 @@ function App() {
     console.log(movie)
     mainApi.addNewMovieCard(movie)
     .then((newMovie) => {
-      setSavedMovies([newMovie, ...savedMovies])
+      console.log('NEW MOVIE>>>', newMovie)
+      setSavedMovies([newMovie.data, ...savedMovies])
     })
     .catch((err) => {console.log(err)})
   }
