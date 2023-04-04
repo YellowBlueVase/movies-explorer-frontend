@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import useFormWithValidation from '../UseFormValidation/UseFormValidation';
 import './SearchForm.css';
 
 function SearhForm({checkboxText, handleShortsActive, handleSearchSubmit}) {
     const { values, handleChange, isValid, resetForm } = useFormWithValidation();
+    const searchRef = useRef(null);
     const [QueryError, setQueryError] = useState('');
 
     useEffect(() => {
@@ -13,7 +14,12 @@ function SearhForm({checkboxText, handleShortsActive, handleSearchSubmit}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        isValid ? handleSearchSubmit(values.search.toLowerCase()) : setQueryError('Введите название фильма или ключевые слова');
+        if (isValid) {
+            handleSearchSubmit(values.search.toLowerCase())
+        } else {
+            setQueryError('Введите название фильма или ключевые слова');
+            searchRef.current.focus()
+        } 
         resetForm();
     };
 
@@ -25,6 +31,7 @@ function SearhForm({checkboxText, handleShortsActive, handleSearchSubmit}) {
                     className="search-box__movie" 
                     type="text"
                     name="search"
+                    ref={searchRef}
                     placeholder='Фильмы'
                     autoComplete="off"
                     required
