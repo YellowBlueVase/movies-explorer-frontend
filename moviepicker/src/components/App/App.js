@@ -48,11 +48,12 @@ function App() {
     .catch((err) => {console.log(err)})
   }
 
-  function handleMovieCardDelete(movie) {
-    mainApi.deleteCard(movie._id)
+  function handleMovieCardDelete(movieId) {
+    console.log('TO DELETE ID >>>', movieId)
+    mainApi.deleteCard(movieId)
     .then(() => {
       setSavedMovies(current => current.filter(item => {
-        return item._id !== movie._id}))
+        return item._id !== movieId}))
     })
     .catch((err) => {console.log(err)})
   }
@@ -185,18 +186,16 @@ function App() {
         console.log(err);
       });
 
-      
-      //TODO try to remake these requests to api with dependencie from the current page and inputed values
-      loggedIn && mainApi
-        .getSavedMovies()
-        .then((savedMovies) => {
-          setIsLoading(true)
-          setSavedMovies(savedMovies.data.reverse());
-          setIsLoading(false)
-        })
-        .catch((err) => {
-          console.log(err);
-        });  
+    loggedIn && mainApi
+      .getSavedMovies()
+      .then((savedMovies) => {
+        setIsLoading(true)
+        setSavedMovies(savedMovies.data.reverse());
+        setIsLoading(false)
+      })
+      .catch((err) => {
+        console.log(err);
+      });  
   }, [loggedIn]);
 
   useEffect(() => {

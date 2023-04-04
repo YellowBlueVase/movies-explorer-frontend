@@ -2,8 +2,8 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import { useEffect, useState } from "react";
 import './MoviesCardList.css';
 
-function MoviesCardList({movies, isLoading, onCardLike, onCardDelete, windowWidth}) {
-    const [shownCardsState, setShownCards] = useState(0);
+function MoviesCardList({movies, savedMovies, isLoading, onCardLike, onCardDelete, windowWidth}) {
+    const [shownCards, setShownCards] = useState(0);
     const [moviesLength, setMoviesLength] = useState(0);
     const [moreCards, setMoreCards] = useState({});
     const [moviesFractured, setMoviesFractured] = useState([])
@@ -14,6 +14,10 @@ function MoviesCardList({movies, isLoading, onCardLike, onCardDelete, windowWidt
         {size : 480, maxInitCards: 8, cardsAdded : 2},
         {size : 320, maxInitCards: 5, cardsAdded : 2}
     ]
+
+    function handleSetMoviesLength() {
+        setMoviesLength(movies.length)
+    }
 
     function handleMoreCards() {
         if (windowWidth < 480) {
@@ -28,30 +32,29 @@ function MoviesCardList({movies, isLoading, onCardLike, onCardDelete, windowWidt
     }
 
     function handleIncreaseNumberOfCardsOnScreen() {
-        if (shownCardsState >= moviesLength) {
+        if (shownCards >= moviesLength) {
             setShownCards(moviesLength)
-            console.log('SHOWN CARDS 1 >>>>', shownCardsState, 'MOVIES LENGTH>>>', moviesLength)
+            console.log('SHOWN CARDS 1 >>>>', shownCards, 'MOVIES LENGTH>>>', moviesLength)
         } else {
-            setShownCards(shownCardsState + moreCards.cardsAddedState)
-            console.log('SHOWN CARDS 2 >>>>', shownCardsState, 'MOVIES LENGTH>>>', moviesLength)
+            setShownCards(shownCards + moreCards.cardsAddedState)
+            console.log('SHOWN CARDS 2 >>>>', shownCards, 'MOVIES LENGTH>>>', moviesLength)
         }
     }
 
-    function handleShowSeveralCards(array) {
-        let fractured = array.slice(0, shownCardsState)
+    function handleShowFracturedCards(array) {
+        let fractured = array.slice(0, shownCards)
         setMoviesFractured(fractured)
     }
 
+
+
     useEffect(() => {
-        setTimeout(() => {
-        setMoviesLength(movies.length);
-        // console.log(movies)
+        handleSetMoviesLength();
         handleMoreCards();
         console.log(moreCards.maxInitCards)
         setShownCards(moreCards.maxInitCards);
-        handleShowSeveralCards(movies);}, 5000)
-        // console.log('SHOWN CARDS 3 >>>>', shownCardsState, 'MOVIES LENGTH>>>', moviesLength)}
-    }, [])
+        handleShowFracturedCards(movies);
+    }, [movies, savedMovies, moviesLength, isLoading, windowWidth, shownCards])
 
     useEffect(() => {
         console.log(moviesFractured)
@@ -65,13 +68,14 @@ function MoviesCardList({movies, isLoading, onCardLike, onCardDelete, windowWidt
                         <MoviesCard 
                         key={movie._id} 
                         card={movie}
+                        savedMovies={savedMovies}
                         onCardLike={onCardLike}
                         onCardDelete={onCardDelete}
                         />
                     );
                 })}
             </ul>
-            {(
+            {shownCards < moviesLength && (
                 <button 
                     className={`movies-card-list__more`} 
                     onClick={handleIncreaseNumberOfCardsOnScreen}

@@ -80,7 +80,7 @@
 }
 
 .movie-card__footer_like:hover {
-    background-color: rgba(43, 224, 128, 0.3);
+    background-color: rgba(43, 224, 128, 0.5);
 }
 
 .movie-card__footer_like_liked {

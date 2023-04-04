@@ -4,7 +4,7 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { useEffect } from "react";
 
-function Movies({movies, isLoading, handleShortsActive, handleSearchSubmit, windowWidth, onCardLike, onCardDelete}) {
+function Movies({movies, savedMovies, isLoading, handleShortsActive, handleSearchSubmit, windowWidth, onCardLike, onCardDelete}) {
 
     useEffect(() => {
         document.title = "Фильмы"
@@ -20,6 +20,7 @@ function Movies({movies, isLoading, handleShortsActive, handleSearchSubmit, wind
             {isLoading && <Preloader />}
             {!isLoading && <MoviesCardList 
                 movies={movies}
+                savedMovies={savedMovies}
                 isLoading={isLoading}
                 windowWidth={windowWidth}
                 onCardLike={onCardLike}
