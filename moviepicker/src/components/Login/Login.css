@@ -23,6 +23,25 @@
     margin: 40px 0;
 }
 
+.login__form-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 24px;
+    height: 156px;
+}
+
+.login__container {
+    
+}
+
+.login__text {
+    color: #A0A0A0;
+    font-size: 10px;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+}
+
 .login__input {
     background-color: white;
     color: black;
@@ -39,12 +58,23 @@
     outline: none;
 }
 
-.login__input_email {
-    margin-bottom: 24px;
+.login__input_error {
+    color: rgba(255, 48, 85, 1);
 }
 
-.login__input_password {
-    margin-bottom: 42px;
+.login__input_error:focus {
+    color: rgba(255, 48, 85, 1);
+}
+
+.login__error {
+    color: rgba(255, 48, 85, 1);
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 6px;
 }
 
 .login__register-text {
@@ -69,11 +99,8 @@
     color: rgba(52, 86, 243, .7);
 }
 
-.login__text {
-    color: #A0A0A0;
-    font-size: 10px;
-    font-weight: 400;
-    margin: 0 0 5px;
+.login__bottom {
+    height: 327px;
 }
 
 .login__submit {
@@ -92,9 +119,24 @@
     background-color: rgba(52, 86, 243, .8);
 }
 
+.login__submit_disabled {
+    color: rgba(194, 194, 194, 1);
+    font-size: 14px;
+    min-width: 396px;
+    height: 45px;
+    background-color: rgba(248, 248, 248, 1);
+    border: 0;
+    border-radius: 3px;
+    margin-top: 179px;
+}
+
 @media all and (max-width: 1280px) {    
     .login__logo {
         margin-top: 232px;
+    }
+
+    .login__bottom {
+        height: 489px;
     }
     
     .login__register-text {
@@ -121,10 +163,20 @@
         min-width: 260px;
         margin-top: 267px;
     }
+
+    .login__submit_disabled {
+        font-size: 12px;
+        min-width: 260px;
+        margin-top: 267px;
+    }
     
     .login__register-text {
         font-size: 12px;
         line-height: 14.52px;
         margin: 14px 0 30px 0;
+    }
+
+    .login__bottom {
+        height: 371px;
     }
 }

@@ -6,12 +6,13 @@ import Main from '../Main/Main';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Movies from '../Movies/Movies';
-import api from "../../utils/api";
+import mainApi from "../../utils/MainApi";
+import moviesApi from "../../utils/MoviesApi";
 import { authorize, register, checkToken } from "../../utils/auth";
-import { Route, Switch, useHistory, withRouter } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory, useLocation } from "react-router-dom";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
-import { GREETING_LOGIN_PAGE, GREETING_REGISTER_PAGE } from "../../utils/constants";
+import { GREETING_LOGIN_PAGE, GREETING_REGISTER_PAGE, SHORTS_DURATION } from "../../utils/constants";
 import Profile from "../Profile/Profile";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Navigation from "../Navigation/Navigation";
@@ -21,33 +22,84 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
-  const [ownMovies, setOwnMovies] = useState([]);
-  const [shortMoviesActive, setShortMoviesActive] = useState(false);
-  const [moviesShort, setMoviesShort] = useState([]);
-  const [ownMoviesShort, setOwnMoviesShort] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [shortsActive, setShortsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [navMenuOpen, setNavMenuOpen] = useState(false);
-  // const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  // const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  // const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [selectedMovieCard, setSelectedMovieCard] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const history = useHistory();
+  const location = useLocation();
 
-  function handleMovieCardClick(movie) {
-    setSelectedMovieCard(movie);
+  function getBack() {
+    history.goBack();
   }
 
-  function handleMovieCardDelete(movie) {
-    api.deleteCard(movie._id)
-    .then(() => {
-      setMovies(current => current.filter(item => {
-        return item._id !== movie._id}))
+  function handleResize() {
+    const width = window.innerWidth;
+    setWindowWidth(width);
+  }
+
+  function handleMovieCardLike(movie) {
+    console.log(movie)
+    mainApi.addNewMovieCard(movie)
+    .then((newMovie) => {
+      console.log('NEW MOVIE>>>', newMovie)
+      setSavedMovies([newMovie.data, ...savedMovies])
     })
     .catch((err) => {console.log(err)})
   }
 
-  function handleLogin(password, email) {
-    authorize(password, email)
+  function handleMovieCardDelete(movieId) {
+    mainApi.deleteCard(movieId)
+    .then(() => {
+      setSavedMovies(current => current.filter(item => {
+        return item._id !== movieId}))
+    })
+    .catch((err) => {console.log(err)})
+  }
+
+  function handleLoggedInChange() {
+    setLoggedIn(true)
+  }
+
+  function handleShortsActive() {
+    setShortsActive(!shortsActive)
+  }
+
+  function handleSearchMoviesSubmit(values) {
+    setIsLoading(true)
+    loggedIn && moviesApi
+      .getInitialMovieCards()
+      .then((initialMovies) => {
+        let searchedMovies = initialMovies.filter((item) => item.nameRU.toLowerCase().includes(values))
+        let filteredMovies = shortsActive ? searchedMovies.filter(item => item.duration < SHORTS_DURATION) : searchedMovies
+        setMovies(filteredMovies.reverse());
+        setTimeout(500)
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleSearchSavedMoviesSubmit(values) {
+    setIsLoading(true)
+    loggedIn && mainApi
+      .getSavedMovies()
+      .then((initialMovies) => {
+        let searchedMovies = initialMovies.data.filter((item) => item.nameRU.toLowerCase().includes(values))
+        let filteredMovies = shortsActive ? searchedMovies.filter(item => item.duration < SHORTS_DURATION) : searchedMovies
+        setSavedMovies(filteredMovies.reverse());
+        setTimeout(500)
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleLogin(values) {
+    authorize(values.password, values.email)
         .then((data) => {
           if (data.token === localStorage.getItem('jwt')) {
               handleLoggedInChange()
@@ -58,12 +110,8 @@ function App() {
         }); 
   }
 
-  function handleLoggedInChange() {
-    setLoggedIn(true)
-  }
-
-  function handleRegister(name, email, password) {
-    register(name, email, password)
+  function handleRegister(values) {
+    register(values.name, values.email, values.password)
     .then((res) => {
       if (res) {
         history.push("/signin");
@@ -83,7 +131,6 @@ function App() {
           setLoggedIn({
             loggedIn: true,
           });
-          history.push("/movies");
         }}) 
       .catch((err) => {
         console.log(err);})
@@ -95,44 +142,17 @@ function App() {
     setLoggedIn(false)
   }
 
-  function handleOwnMoviesFilter(movies){
-    let newArray = []
-    movies.filter(movie => {
-      if (movie.owner === currentUser._id) {
-        newArray.push(movie)
-      }
+  function handleProfileUpdate(values){
+    mainApi.updateProfile(values)
+    .then(() => {
+      setCurrentUser(values)
     })
-    setOwnMovies(newArray);
-    console.log(newArray)
-    setTimeout(()=>{console.log('OWN MOVIES>>>', ownMovies)}, 1)
-  }
-
-  function handleFilterShortMovies(array, shortMoviesStatus){
-    let newArray = []
-    if (shortMoviesStatus) {
-      array.filter((item) => {
-        if (item.duration <30) {
-          newArray.push(item)
-        }
-      })
-    } else {
-      newArray = []
-    }
-    setMoviesShort(newArray);
-  }
-
-  function handleChangeShortMoviesStatus() {
-    setShortMoviesActive(!shortMoviesActive); 
+    .catch((err) => {console.log(err)})
   }
 
   function handleToggleNavMenu() {
-    console.log(navMenuOpen);
     setNavMenuOpen(!navMenuOpen); 
   }
-
-  // function handleNavButtonClick() {
-  //   setIsEditProfilePopupOpen(true);
-  // }
 
   function closeAllPopups() {
     setNavMenuOpen(false);
@@ -156,7 +176,7 @@ function App() {
   }, [isOpen]);
 
   useEffect(() => {
-    loggedIn && api
+    loggedIn && mainApi
       .getProfileInfo()
       .then((currentUser) => {
         setCurrentUser(currentUser.data);
@@ -164,25 +184,31 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-    
-    loggedIn && api
-      .getInitialMovieCards()
-      .then((initialMovies) => {
-        setMovies(initialMovies.data.reverse());
-        setIsLoading(false);
-        setTimeout(()=> {handleOwnMoviesFilter(initialMovies.data);}, 1000)
+
+    loggedIn && mainApi
+      .getSavedMovies()
+      .then((savedMovies) => {
+        setIsLoading(true)
+        setSavedMovies(savedMovies.data.reverse());
+        setIsLoading(false)
       })
       .catch((err) => {
         console.log(err);
-      });
-    
+      });  
   }, [loggedIn]);
 
   useEffect(() => {
     handleTokenCheck();
-    handleFilterShortMovies(ownMovies, shortMoviesActive); 
-    handleFilterShortMovies(moviesShort, shortMoviesActive);
+    handleResize();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.addEventListener('resize', handleResize);}, 2000)
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  }, [windowWidth])
 
   return (
     <div className="page">
@@ -198,46 +224,64 @@ function App() {
         />
         <Switch>
           <Route exact path="/signin">
-            <Login 
-              onLogin={handleLogin}
-              greeting={GREETING_LOGIN_PAGE} />
+            {!loggedIn ? (
+                <Login 
+                onLogin={handleLogin}
+                greeting={GREETING_LOGIN_PAGE} />
+              ) : (
+                <Redirect to='/' />
+            )}
           </Route>
           <Route exact path="/signup">
-            <Register 
-              onRegister={handleRegister}
-              greeting={GREETING_REGISTER_PAGE}/>
+            {!loggedIn ? (
+                <Register 
+                onRegister={handleRegister}
+                greeting={GREETING_REGISTER_PAGE}/>
+              ) : (
+                <Redirect to='/' />
+            )}
           </Route>
-          <Route exact path="/profile">
-            <Profile
-              onSignOut={handleSignOut}
-            />
-          </Route>
+          <ProtectedRoute
+            path="/profile"
+            component={Profile}
+            loggedIn={loggedIn}
+            onSignOut={handleSignOut}
+            onProfileUpdate={handleProfileUpdate}
+          />
           <Route exact path="/">
             <Main />
           </Route>
-          <Route exact path="/movies">
-            <Movies
-              movies={movies}
-              shortMovies={moviesShort}
-              shortMoviesActive={shortMoviesActive}
-              isLoading={isLoading}
-              onShortClick={handleChangeShortMoviesStatus}
-              onCardDelete={handleMovieCardDelete}
+          <ProtectedRoute 
+            path="/movies"
+            component={Movies}
+            loggedIn={loggedIn}
+            movies={movies}
+            savedMovies={savedMovies}
+            isLoading={isLoading}
+            shortsActive={shortsActive}
+            handleSearchSubmit={handleSearchMoviesSubmit}
+            handleShortsActive={handleShortsActive}
+            windowWidth={windowWidth}
+            onCardLike={handleMovieCardLike}
+            onCardDelete={handleMovieCardDelete}
+          />
+          <ProtectedRoute 
+            path="/saved-movies"
+            component={SavedMovies}
+            loggedIn={loggedIn}
+            movies={savedMovies}
+            isLoading={isLoading}
+            shortsActive={shortsActive}
+            handleSearchSubmit={handleSearchSavedMoviesSubmit}
+            handleShortsActive={handleShortsActive}
+            windowWidth={windowWidth}
+            onCardDelete={handleMovieCardDelete}
+          />
+          <Route path="*">
+            <Page404 
+              getBack={getBack}
             />
           </Route>
-          <Route exact path="/saved-movies">
-            <SavedMovies 
-              movies={ownMovies}
-              shortMovies={ownMoviesShort}
-              shortMoviesActive={shortMoviesActive}
-              isLoading={isLoading}
-              onShortClick={handleChangeShortMoviesStatus}
-              onCardDelete={handleMovieCardDelete}
-            />
-          </Route>
-          {/* <Route path="*">
-            <Page404 />
-          </Route> */}
         </Switch>
         <Footer />
       </CurrentUserContext.Provider>

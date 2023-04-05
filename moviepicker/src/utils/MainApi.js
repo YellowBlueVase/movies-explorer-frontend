@@ -1,6 +1,6 @@
-import { BASE_URL } from "./auth";
+import { BASE_URL, BASIC_API } from "./constants";
 
-class Api {
+export class Api {
     constructor(config) {
         this._url = `${config.url}/`;
         this._movieId = config._id;
@@ -41,7 +41,7 @@ class Api {
         })
     }
     
-    getInitialMovieCards() {
+    getSavedMovies() {
       return fetch(this._urlMovies, {
         method: 'GET',
         headers: {
@@ -63,7 +63,7 @@ class Api {
         },
         body: JSON.stringify({
           name:data.name,
-          about:data.about
+          email:data.email
         })
         })
         .then(res => {
@@ -79,11 +79,18 @@ class Api {
           'Authorization': `Bearer ${localStorage.getItem('jwt')}`
         },
         body: JSON.stringify({
-          name: data.name,
-          link: data.link,
-          likes: data.likes,
-          owner: data.owner
-        })
+          country: data.country,
+          director: data.director,
+          duration: data.duration,
+          year: data.year,
+          description: data.description,
+          image: `${BASIC_API}${data.image.url}`,
+          trailer: data.trailerLink,
+          nameRU: data.nameRU,
+          nameEN: data.nameEN,
+          thumbnail: `${BASIC_API}${data.image.url}`,
+          movieId: data.id,
+        }),
         })
       .then((res) => {
           return this._getResponseData(this._urlMovies, res)
@@ -130,7 +137,7 @@ class Api {
     }
 }
 
-const api = new Api({
+const mainApi = new Api({
     url: BASE_URL})
 
-export default api;
+export default mainApi;

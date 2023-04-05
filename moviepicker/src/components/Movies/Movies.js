@@ -4,11 +4,7 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { useEffect } from "react";
 
-function Movies({movies, shortMovies, shortMoviesActive, isLoading, onShortClick, onCardDelete}) {
-
-    function handlePickMoviesCards() {
-        return shortMoviesActive ? shortMovies : movies;
-    }
+function Movies({movies, savedMovies, isLoading, handleShortsActive, handleSearchSubmit, windowWidth, onCardLike, onCardDelete}) {
 
     useEffect(() => {
         document.title = "Фильмы"
@@ -17,15 +13,19 @@ function Movies({movies, shortMovies, shortMoviesActive, isLoading, onShortClick
     return (
         <div className="movies-page">
             <SearchForm
-                shortMoviesActive={shortMoviesActive}
-                onShortClick={onShortClick}
-                checkboxText={'Короткометражки'} 
+                handleShortsActive={handleShortsActive}
+                checkboxText={'Короткометражки'}
+                handleSearchSubmit={handleSearchSubmit}
             />
             {isLoading && <Preloader />}
-            <MoviesCardList 
-                movies={handlePickMoviesCards()}
+            {!isLoading && <MoviesCardList 
+                movies={movies}
+                savedMovies={savedMovies}
+                isLoading={isLoading}
+                windowWidth={windowWidth}
+                onCardLike={onCardLike}
                 onCardDelete={onCardDelete}
-            />
+            />}
         </div>
     );
 }

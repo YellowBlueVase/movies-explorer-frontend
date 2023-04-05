@@ -1,14 +1,10 @@
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import SearhForm from '../SearchForm/SearchForm';
+import SearchForm from '../SearchForm/SearchForm';
 import { useEffect } from 'react';
 import './SavedMovies.css';
 
-function SavedMovies({movies, shortMovies, shortMoviesActive, isLoading, onShortClick, onCardDelete}) {
-
-    function handlePickMoviesCards() {
-        return shortMoviesActive ? shortMovies : movies;
-    }
+function SavedMovies({movies, isLoading, handleShortsActive, handleSearchSubmit, windowWidth, onCardDelete}) {
 
     useEffect(() => {
         document.title = "Сохранённые фильмы"
@@ -16,17 +12,18 @@ function SavedMovies({movies, shortMovies, shortMoviesActive, isLoading, onShort
 
     return (
         <section className="saved-movies">
-            <SearhForm
-                shortMoviesActive={shortMoviesActive}
-                onShortClick={onShortClick}
-                checkboxText={'Короткометражки'} 
+            <SearchForm
+                handleShortsActive={handleShortsActive}
+                checkboxText={'Короткометражки'}
+                handleSearchSubmit={handleSearchSubmit}
             />
-            <div className="separator-h"></div>
             {isLoading && <Preloader />}
-            <MoviesCardList 
-                movies={handlePickMoviesCards()}
+            {!isLoading && <MoviesCardList 
+                movies={movies}
+                isLoading={isLoading}
+                windowWidth={windowWidth}
                 onCardDelete={onCardDelete}
-            />
+            />}
         </section>
     )
 }

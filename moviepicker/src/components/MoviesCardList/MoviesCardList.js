@@ -1,99 +1,81 @@
-import { useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { useEffect, useState } from "react";
 import './MoviesCardList.css';
 
-function MoviesCardList({movies}) {
-    const dummyCurrentUser = useContext(CurrentUserContext);
-    console.log(dummyCurrentUser);
-    const dummyMoviesForReviewer = [
-        {
-            "_id" : "1", 
-            "country" : "Russia",
-            "director" : "Burjua",
-            "duration" : "20",
-            "year" : "2020",
-            "description" : "Some description",
-            "image" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "trailer" : "https://www.youtube.com/watch?v=jGfiPs9zuhE",
-            "nameRU" : "ДЖОКЕР",
-            "nameEN" : "Joker",
-            "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "movieId" : "23231",
-            "owner" : dummyCurrentUser._id,
-        },
-        {
-            "_id" : "2",
-            "country" : "England",
-            "director" : "Burjua",
-            "duration" : "129",
-            "year" : "2015",
-            "description" : "Some description",
-            "image" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "trailer" : "https://www.youtube.com/watch?v=jGfiPs9zuhE",
-            "nameRU" : "Яблоневый сад",
-            "nameEN" : "Joker",
-            "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "movieId" : "23231"
-        },
-        {
-            "_id" : "3", 
-            "country" : "Russia",
-            "director" : "Burjua",
-            "duration" : "20",
-            "year" : "2020",
-            "description" : "Some description",
-            "image" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "trailer" : "https://www.youtube.com/watch?v=jGfiPs9zuhE",
-            "nameRU" : "ДЖОКЕР",
-            "nameEN" : "Joker",
-            "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "movieId" : "23231",
-            "owner" : dummyCurrentUser._id,
-        },
-        {
-            "_id" : "4",
-            "country" : "England",
-            "director" : "Burjua",
-            "duration" : "129",
-            "year" : "2015",
-            "description" : "Some description",
-            "image" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "trailer" : "https://www.youtube.com/watch?v=jGfiPs9zuhE",
-            "nameRU" : "Яблоневый сад",
-            "nameEN" : "Joker",
-            "thumbnail" : "https://images-prod.dazeddigital.com/900/azure/dazed-prod/1270/8/1278472.jpg",
-            "movieId" : "23231"
-        }
+function MoviesCardList({movies, savedMovies, isLoading, onCardLike, onCardDelete, windowWidth}) {
+    const [shownCards, setShownCards] = useState(0);
+    const [moviesLength, setMoviesLength] = useState(0);
+    const [moreCards, setMoreCards] = useState({});
+    const [moviesFractured, setMoviesFractured] = useState([])
+
+    const moreArray = [
+        {size : 1280, maxInitCards: 16, cardsAdded : 4},
+        {size : 768, maxInitCards: 12, cardsAdded : 3},
+        {size : 480, maxInitCards: 8, cardsAdded : 2},
+        {size : 320, maxInitCards: 5, cardsAdded : 2}
     ]
+
+    function handleSetMoviesLength() {
+        setMoviesLength(movies.length)
+    }
+
+    function handleMoreCards() {
+        if (windowWidth < 480) {
+            setMoreCards(moreArray[3]);
+        } else if (windowWidth < 768) {
+            setMoreCards(moreArray[2]);
+        } else if (windowWidth < 1280) {
+            setMoreCards(moreArray[1]);
+        } else {
+            setMoreCards(moreArray[0]);
+        }
+    }
+
+    function handleIncreaseNumberOfCardsOnScreen() {
+        if (shownCards >= moviesLength) {
+            setShownCards(moviesLength)
+        } else {
+            setShownCards(shownCards + moreCards.cardsAddedState)
+        }
+    }
+
+    function handleShowFracturedCards(array) {
+        let fractured = array.slice(0, shownCards)
+        setMoviesFractured(fractured)
+    }
+
+
+
+    useEffect(() => {
+        handleSetMoviesLength();
+        handleMoreCards();
+        setShownCards(moreCards.maxInitCards);
+        handleShowFracturedCards(movies);
+    }, [movies, savedMovies, moviesLength, isLoading, windowWidth, shownCards])
 
     return (
         <div className="movies-card-list">
-            <div className="movies-card-list__grid">
+            <ul className="movies-card-list__grid">
                 {movies.map(movie => {
-                return (
-                    <MoviesCard 
-                    key={movie._id} 
-                    card={movie}
-                    onCardClick
-                    onCardLike
-                    onCardDelete
-                    />
-                );
+                    return (
+                        <MoviesCard 
+                        key={movie._id} 
+                        card={movie}
+                        savedMovies={savedMovies}
+                        onCardLike={onCardLike}
+                        onCardDelete={onCardDelete}
+                        />
+                    );
                 })}
-                {dummyMoviesForReviewer.map(dummy => {
-                return (
-                    <MoviesCard 
-                    key={dummy._id} 
-                    card={dummy}
-                    onCardClick
-                    onCardLike
-                    onCardDelete
-                    />
-                );
-                })}
-            </div>
-            <div className="movies-card-list__more">Ещё</div>
+            </ul>
+            {shownCards < moviesLength && (
+                <button 
+                    className={`movies-card-list__more`} 
+                    onClick={handleIncreaseNumberOfCardsOnScreen}
+                >
+                    Ещё
+                </button>
+            )}
         </div>
     )
 }
